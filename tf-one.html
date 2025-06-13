@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Guide: Your First TensorFlow Operation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A linear, step-by-step interactive tutorial. The structure guides the user through the process sequentially, from introduction to a simulated execution. It uses a vertical stepper layout with distinct sections for introduction, the interactive code walkthrough, a simulated "run" environment, and a final explanation. This structure was chosen because it mirrors the learning process for a piece of code, breaking it into manageable, understandable chunks. It's more engaging than a static document and reinforces learning by having the user actively click to progress and "run" the code. -->
+    <!-- Visualization & Content Choices: The source material is a textual and code-based tutorial. Goal: Organize & Inform. Method: Interactive Stepper (HTML/CSS/JS). Interaction: Users click "Next" to reveal the next step's explanation and code. Goal: Engage & Confirm. Method: Simulated Code Execution (HTML/CSS/JS). Interaction: A "Run" button reveals the pre-formatted output, mimicking a real terminal. Goal: Inform. Method: Copy-to-Clipboard buttons. Interaction: Users can click to copy code snippets. This design uses structured HTML and JS interactions to make a procedural guide dynamic and user-friendly. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4; /* stone-100 */
+        }
+        .code-block {
+            background-color: #282c34; /* A dark theme for code */
+            color: #abb2bf;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            position: relative;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background-color: #4b5563; /* gray-600 */
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: #6b7280; /* gray-500 */
+        }
+        .step-item.active .step-circle {
+            background-color: #0891b2; /* cyan-600 */
+            border-color: #0891b2; /* cyan-600 */
+            color: white;
+        }
+        .step-item.active .step-title {
+            color: #0e7490; /* cyan-700 */
+        }
+        .step-item.completed .step-circle {
+            background-color: #0891b2; /* cyan-600 */
+            border-color: #0891b2; /* cyan-600 */
+            color: white;
+        }
+        .step-item.completed .step-line {
+            background-color: #0891b2; /* cyan-600 */
+        }
+        .output-console {
+            background-color: #1f2937; /* gray-800 */
+            color: #d1d5db; /* gray-300 */
+            font-family: 'Courier New', Courier, monospace;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #4b5563; /* gray-600 */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-cyan-800">Interactive Guide</h1>
+            <p class="mt-2 text-lg text-gray-600">Your First TensorFlow Operation</p>
+        </header>
+
+        <main>
+            <!-- Introduction Section -->
+            <section id="intro" class="mb-16 bg-white p-8 rounded-xl shadow-md">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Welcome! Let's Get Started.</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    This guide will walk you through the absolute basics of TensorFlow by defining and running a simple mathematical operation. TensorFlow is an open-source library for numerical computation and large-scale machine learning. At its core, it's a powerful math library where data is represented as a "tensor."
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    This interactive tutorial breaks down the process into simple, manageable steps. You'll see the code for each step and an explanation of what it does. Let's begin our journey into the world of TensorFlow.
+                </p>
+                 <div class="mt-6 bg-cyan-50 border-l-4 border-cyan-500 text-cyan-800 p-4 rounded-r-lg" role="alert">
+                    <p class="font-bold">Prerequisite</p>
+                    <p>Before you begin, ensure you have Python and TensorFlow installed. You can install TensorFlow by running this command in your terminal:</p>
+                    <div class="mt-2 code-block text-sm">
+                        <pre><code>pip install tensorflow</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Stepper Section -->
+            <section id="interactive-walkthrough" class="mb-16">
+                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Step-by-Step Code Walkthrough</h2>
+                <div class="md:grid md:grid-cols-12 md:gap-12">
+                    <!-- Stepper Navigation -->
+                    <aside class="md:col-span-4 mb-8 md:mb-0">
+                        <nav id="stepper-nav" class="space-y-2">
+                            <!-- Steps will be injected here by JS -->
+                        </nav>
+                    </aside>
+
+                    <!-- Step Content -->
+                    <div class="md:col-span-8 bg-white p-8 rounded-xl shadow-md min-h-[300px]">
+                        <div id="step-content">
+                            <h3 id="step-title" class="text-2xl font-bold text-cyan-800 mb-4"></h3>
+                            <p id="step-explanation" class="text-gray-600 leading-relaxed mb-6"></p>
+                            <div id="step-code-container" class="code-block">
+                                <pre><code id="step-code"></code></pre>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-right">
+                             <button id="next-step-btn" class="bg-cyan-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-cyan-700 transition-colors shadow">Next Step &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- "Run It" Section -->
+            <section id="run-it" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Put It All Together & Run</h2>
+                 <div class="bg-white p-8 rounded-xl shadow-md">
+                     <p class="text-gray-600 leading-relaxed mb-4">
+                        Here is the complete Python script that combines all the steps. Click the "Run Simulation" button below to see what the output looks like when you execute the script in your terminal. This provides a safe way to see the result without having to leave the browser.
+                    </p>
+                    <div class="code-block mb-6">
+                        <pre><code># Step 1: Import TensorFlow
+import tensorflow as tf
+
+# Step 2: Create two constant tensors
+a = tf.constant(5)
+b = tf.constant(10)
+
+# Step 3: Define an addition operation
+c = tf.add(a, b)
+
+# Step 4: Print the result
+print("The result of the operation is:")
+print(c)
+
+# To get just the numerical value, use the .numpy() method
+print("\nThe numerical value is:")
+print(c.numpy())</code></pre>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+
+                    <div class="text-center">
+                        <button id="run-btn" class="bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-emerald-700 transition-transform hover:scale-105 shadow-lg">
+                            ▶ Run Simulation
+                        </button>
+                    </div>
+
+                    <div id="output-container" class="mt-6 hidden">
+                         <h3 class="text-xl font-bold text-gray-700 mb-2">Simulated Output:</h3>
+                        <div class="output-console">
+                            <p>The result of the operation is:</p>
+                            <p>tf.Tensor(15, shape=(), dtype=int32)</p>
+                            <br>
+                            <p>The numerical value is:</p>
+                            <p>15</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Explanation Section -->
+            <section id="explanation" class="mb-16">
+                 <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">What's Happening Here?</h2>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        When you run the TensorFlow code, the output provides detailed information about the result. Understanding this output is key to working with TensorFlow. Here's a breakdown of what you saw in the simulated console.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="p-4 bg-stone-50 rounded-lg">
+                            <h4 class="font-bold text-lg text-gray-700">1. The Tensor Object</h4>
+                            <code class="text-sm text-fuchsia-800 bg-fuchsia-100 rounded px-2 py-1">tf.Tensor(15, shape=(), dtype=int32)</code>
+                            <p class="mt-2 text-gray-600">This is the standard representation of a tensor in TensorFlow. It tells you three things:</p>
+                             <ul class="list-disc list-inside mt-2 space-y-1 text-gray-600">
+                                <li><b class="text-gray-700">15:</b> The actual numerical result of the computation (5 + 10).</li>
+                                <li><b class="text-gray-700">shape=():</b> The shape of the tensor. An empty shape `()` means it's a scalar (a single value). A vector of 3 items would be `(3,)`.</li>
+                                <li><b class="text-gray-700">dtype=int32:</b> The data type. TensorFlow inferred the inputs were 32-bit integers.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 bg-stone-50 rounded-lg">
+                            <h4 class="font-bold text-lg text-gray-700">2. The NumPy Value</h4>
+                             <code class="text-sm text-fuchsia-800 bg-fuchsia-100 rounded px-2 py-1">.numpy()</code>
+                            <p class="mt-2 text-gray-600">The <code class="text-sm">.numpy()</code> method is a handy function to extract just the raw numerical value from a tensor object. It converts the tensor into a format compatible with NumPy, a popular Python library for numerical operations, which makes it easy to use the result in other parts of your Python code.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+            <p class="text-gray-500">Interactive TensorFlow Guide | Built with Tailwind CSS & Vanilla JS</p>
+        </footer>
+    </div>
+
+    <script>
+        const steps = [
+            {
+                title: "Step 1: Import TensorFlow",
+                explanation: "The first step in any Python script using TensorFlow is to import the library. We give it the conventional alias 'tf' to make it easier to call its functions.",
+                code: "import tensorflow as tf"
+            },
+            {
+                title: "Step 2: Create Tensors",
+                explanation: "In TensorFlow, all data is represented as tensors, which are multi-dimensional arrays. Here, we create two 'constant' tensors. These are tensors whose values cannot be changed after creation.",
+                code: "a = tf.constant(5)\nb = tf.constant(10)"
+            },
+            {
+                title: "Step 3: Define the Operation",
+                explanation: "Next, we define the mathematical operation we want to perform. We use TensorFlow's built-in 'add' function to add our two tensors together. The result is another tensor.",
+                code: "c = tf.add(a, b)"
+            },
+            {
+                title: "Step 4: View the Result",
+                explanation: "In modern TensorFlow, operations run 'eagerly,' meaning the result is computed immediately. We can simply print the resulting tensor 'c' to see its value, shape, and data type.",
+                code: "print(c)"
+            }
+        ];
+
+        let currentStep = 0;
+
+        const stepperNav = document.getElementById('stepper-nav');
+        const stepTitle = document.getElementById('step-title');
+        const stepExplanation = document.getElementById('step-explanation');
+        const stepCode = document.getElementById('step-code');
+        const nextStepBtn = document.getElementById('next-step-btn');
+        const runBtn = document.getElementById('run-btn');
+        const outputContainer = document.getElementById('output-container');
+        
+        function updateStepContent(stepIndex) {
+            const step = steps[stepIndex];
+            stepTitle.textContent = step.title;
+            stepExplanation.textContent = step.explanation;
+            stepCode.textContent = step.code;
+            updateStepperNav(stepIndex);
+        }
+        
+        function updateStepperNav(activeIndex) {
+            stepperNav.innerHTML = '';
+            steps.forEach((step, index) => {
+                const isCompleted = index < activeIndex;
+                const isActive = index === activeIndex;
+
+                const item = document.createElement('div');
+                item.className = 'step-item flex items-start';
+                if (isActive) item.classList.add('active');
+                if (isCompleted) item.classList.add('completed');
+                
+                item.innerHTML = `
+                    <div class="flex flex-col items-center mr-4">
+                        <div class="step-circle w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center font-bold text-gray-500 transition-colors">
+                            ${isCompleted ? '&#10003;' : index + 1}
+                        </div>
+                        ${index < steps.length - 1 ? '<div class="step-line w-px h-16 bg-gray-300 transition-colors"></div>' : ''}
+                    </div>
+                    <div>
+                        <h4 class="step-title font-bold text-lg text-gray-500 transition-colors">${step.title}</h4>
+                    </div>
+                `;
+                stepperNav.appendChild(item);
+            });
+        }
+        
+        nextStepBtn.addEventListener('click', () => {
+            currentStep++;
+            if (currentStep >= steps.length) {
+                currentStep = steps.length - 1; // Stay on last step
+                nextStepBtn.textContent = 'All Steps Done!';
+                nextStepBtn.disabled = true;
+                nextStepBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                // Scroll to the run-it section
+                document.getElementById('run-it').scrollIntoView({ behavior: 'smooth' });
+            }
+            updateStepContent(currentStep);
+        });
+        
+        runBtn.addEventListener('click', () => {
+            outputContainer.classList.remove('hidden');
+            runBtn.textContent = 'Simulation Complete!';
+            runBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+            runBtn.classList.add('bg-gray-500');
+            runBtn.disabled = true;
+
+            // Scroll to the output
+            outputContainer.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        function copyCode(button) {
+            const pre = button.previousElementSibling;
+            const code = pre.innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        // Initial setup
+        window.addEventListener('DOMContentLoaded', () => {
+            updateStepContent(0);
+        });
+
+    </script>
+</body>
+</html>
