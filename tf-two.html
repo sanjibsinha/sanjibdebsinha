@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Tensors & ML Fundamentals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .prose-dark {
+            color: #d1d5db; /* gray-300 */
+        }
+        .prose-dark h1, .prose-dark h2, .prose-dark h3, .prose-dark strong {
+            color: #f9fafb; /* gray-50 */
+        }
+        .prose-dark p {
+            line-height: 1.75;
+            margin-bottom: 1.25em;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <div class="container mx-auto max-w-6xl p-4 sm:p-6 md:p-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-10 border-b border-gray-700 pb-6">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight">Understanding Tensors and Machine Learning Fundamentals</h1>
+            <p class="text-lg text-gray-400 mt-3">Published on June 14, 2025</p>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+
+            <!-- Blog Post Content (Main Column) -->
+            <main class="lg:col-span-2 prose-dark">
+                <h2 class="text-3xl font-bold mb-6 text-white">Full Transcript</h2>
+                <div id="blog-content" class="space-y-4">
+                    <!-- Full transcript will be injected here -->
+                </div>
+            </main>
+
+            <!-- Key Moments Sidebar (Aside) -->
+            <aside class="lg:col-span-1">
+                <div class="sticky top-8 bg-gray-800 border border-blue-500/30 rounded-xl p-6 shadow-lg">
+                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-star text-yellow-400 mr-3"></i>
+                        Key Moments
+                    </h3>
+                    <ul id="key-moments" class="space-y-4 list-none">
+                        <!-- Key moments will be injected here -->
+                    </ul>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // The raw transcript data provided by the user.
+            const srtData = `1
+00:00:00,600 --> 00:00:03,400
+If you have seen the previous video on
+
+2
+00:00:03,534 --> 00:00:06,400
+AI for everyone series, the second video
+
+3
+00:00:06,467 --> 00:00:08,601
+or third video perhaps, you have seen
+
+4
+00:00:08,601 --> 00:00:11,334
+that you have already by far
+
+5
+00:00:11,534 --> 00:00:13,267
+you have learned that how to
+
+6
+00:00:15,201 --> 00:00:17,534
+import our tensorflow
+
+7
+00:00:17,868 --> 00:00:20,801
+library right?And it's quite easy. It's
+
+8
+00:00:20,801 --> 00:00:23,268
+very and we can also
+
+9
+00:00:23,601 --> 00:00:24,468
+print out the.
+
+10
+00:00:26,402 --> 00:00:29,202
+Version also I have already connected
+
+11
+00:00:29,202 --> 00:00:31,935
+here. So we if we just go through this we
+
+12
+00:00:31,935 --> 00:00:34,402
+can get the version of the tensorflow we
+
+13
+00:00:34,402 --> 00:00:36,602
+are going to use. And now the second
+
+14
+00:00:36,602 --> 00:00:39,536
+thing what we have seen is another
+
+15
+00:00:40,469 --> 00:00:42,836
+piece of code that is also very
+
+16
+00:00:42,836 --> 00:00:45,403
+important. That means this one
+
+17
+00:00:46,003 --> 00:00:48,870
+where we have this
+
+18
+00:00:48,870 --> 00:00:51,836
+one. OK, two constant
+
+19
+00:00:51,836 --> 00:00:53,803
+tensors. OK, now the question is
+
+20
+00:00:55,270 --> 00:00:57,537
+what these values are, how they look
+
+21
+00:00:57,537 --> 00:00:59,137
+like. First of all, how they look like.
+
+22
+00:00:59,137 --> 00:01:00,604
+Let us try to understand how they look
+
+23
+00:01:00,604 --> 00:01:03,270
+like this value. OK, so to do
+
+24
+00:01:03,270 --> 00:01:06,071
+that, what we have done a very simple
+
+25
+00:01:06,071 --> 00:01:07,604
+thing. Let us just
+
+26
+00:01:09,737 --> 00:01:12,271
+look at this value, look at this
+
+27
+00:01:12,271 --> 00:01:14,338
+table where. I have
+
+28
+00:01:15,271 --> 00:01:18,071
+this is our first row, right?
+
+29
+00:01:18,805 --> 00:01:21,672
+And this is our first column. This one is
+
+30
+00:01:21,672 --> 00:01:24,272
+our first column. OK and this is
+
+31
+00:01:24,538 --> 00:01:26,938
+so this is our first column and this is
+
+32
+00:01:27,105 --> 00:01:30,005
+our second column, right?This is our
+
+33
+00:01:30,539 --> 00:01:33,206
+second column and this is our first row.
+
+34
+00:01:33,339 --> 00:01:35,872
+And the first row first value is what
+
+35
+00:01:36,006 --> 00:01:38,606
+first row first value is. One and two.
+
+36
+00:01:38,606 --> 00:01:41,139
+That means one and two means this is one
+
+37
+00:01:41,206 --> 00:01:43,873
+and this is 2. Now look
+
+38
+00:01:43,940 --> 00:01:46,706
+at the value again. If you
+
+39
+00:01:47,540 --> 00:01:49,406
+look at the value again, you can see that
+
+40
+00:01:49,406 --> 00:01:51,740
+this is one and this is 2 and below one
+
+41
+00:01:51,740 --> 00:01:54,373
+there is 3 and below 2 there is 4. So let
+
+42
+00:01:54,373 --> 00:01:57,207
+us come back to this table. So below one
+
+43
+00:01:57,274 --> 00:01:59,274
+what below one is 3.
+
+44
+00:01:59,874 --> 00:02:02,841
+So we can write here 3. And
+
+45
+00:02:02,841 --> 00:02:05,474
+we can write here 4 right?
+
+46
+00:02:05,807 --> 00:02:08,141
+So this table goes on like this. We can
+
+47
+00:02:08,141 --> 00:02:10,408
+write here also five
+
+48
+00:02:10,941 --> 00:02:13,875
+and we can write here also six.
+
+49
+00:02:14,808 --> 00:02:17,541
+Now we can just say
+
+50
+00:02:17,541 --> 00:02:20,075
+that this value that means this one
+
+51
+00:02:21,008 --> 00:02:23,809
+is it. It belongs to first
+
+52
+00:02:23,809 --> 00:02:26,742
+row, first column right?And this belongs
+
+53
+00:02:26,742 --> 00:02:29,276
+to. First row but second column.
+
+54
+00:02:29,742 --> 00:02:31,742
+OK, this is our second
+
+55
+00:02:32,409 --> 00:02:34,476
+row, but this one is
+
+56
+00:02:35,009 --> 00:02:37,276
+2nd row but first column.
+
+57
+00:02:38,476 --> 00:02:41,276
+This is our second row and 2nd
+
+58
+00:02:41,276 --> 00:02:44,076
+column. This is our third row.
+
+59
+00:02:44,343 --> 00:02:46,277
+This one is 3rd row. Obviously this one
+
+60
+00:02:46,277 --> 00:02:48,877
+is 3rd row. So third row,
+
+61
+00:02:49,277 --> 00:02:52,010
+first column and 3rd row. Second
+
+62
+00:02:52,010 --> 00:02:54,610
+column. So more or
+
+63
+00:02:54,610 --> 00:02:57,277
+less this we can visualize by
+
+64
+00:02:57,911 --> 00:02:59,677
+drawing because this is a very simple
+
+65
+00:02:59,677 --> 00:03:01,911
+value, right?And we can also have
+
+66
+00:03:01,944 --> 00:03:03,878
+something like this 10123
+
+67
+00:03:04,778 --> 00:03:05,144
+kind
+
+68
+00:03:08,378 --> 00:03:10,478
+of things. OK, this is a simple array,
+
+69
+00:03:10,811 --> 00:03:13,478
+linear array OK and this is.
+
+70
+00:03:13,778 --> 00:03:15,445
+Of course not linear because this is a
+
+71
+00:03:15,445 --> 00:03:18,212
+table where we have the first column,
+
+72
+00:03:18,745 --> 00:03:20,945
+second column, third column, 4th column
+
+73
+00:03:21,145 --> 00:03:23,212
+like that and there are there could be
+
+74
+00:03:23,212 --> 00:03:25,812
+several rows. Now what about this one?
+
+75
+00:03:27,079 --> 00:03:29,912
+If you look at this diagram you
+
+76
+00:03:29,912 --> 00:03:32,213
+can see that there are several rows and
+
+77
+00:03:32,213 --> 00:03:34,479
+columns and it is a three-dimensional
+
+78
+00:03:34,479 --> 00:03:35,613
+object. So this is called
+
+79
+00:03:35,613 --> 00:03:38,080
+multidimensional array. OK.
+
+80
+00:03:38,546 --> 00:03:40,780
+And in Python the ND array you have you
+
+81
+00:03:40,813 --> 00:03:43,280
+may have heard if you know Python. So
+
+82
+00:03:43,480 --> 00:03:45,747
+multidimensional array is a very
+
+83
+00:03:46,413 --> 00:03:48,947
+difficult type of array and mainly
+
+84
+00:03:48,947 --> 00:03:51,647
+tensors are mainly
+
+85
+00:03:51,647 --> 00:03:54,214
+used for tackling such multidimensional
+
+86
+00:03:54,281 --> 00:03:57,014
+array and do more operations
+
+87
+00:03:57,014 --> 00:03:59,814
+like this. Like this one I can
+
+88
+00:04:00,748 --> 00:04:02,414
+tell you like this one this could be.
+
+89
+00:04:03,014 --> 00:04:04,881
+Very complex and you will see in my
+
+90
+00:04:06,448 --> 00:04:08,615
+future videos that how complex it could
+
+91
+00:04:08,615 --> 00:04:10,782
+be. OK, so if you
+
+92
+00:04:11,482 --> 00:04:14,182
+look at the look at
+
+93
+00:04:14,182 --> 00:04:17,015
+this Tensorflow operations, you can see
+
+94
+00:04:17,215 --> 00:04:19,215
+that if I just run this
+
+95
+00:04:20,349 --> 00:04:22,882
+one, you can see that this one is
+
+96
+00:04:23,216 --> 00:04:26,182
+like say 22. That means. Quite 2
+
+97
+00:04:27,083 --> 00:04:29,016
+two means there are two columns, 2 rows.
+
+98
+00:04:29,283 --> 00:04:31,816
+OK, it is also two rows and two columns.
+
+99
+00:04:31,883 --> 00:04:34,816
+OK, but it could be if I
+
+100
+00:04:34,883 --> 00:04:37,816
+just write like this one, if I add
+
+101
+00:04:37,816 --> 00:04:40,617
+three here and if we
+
+102
+00:04:40,617 --> 00:04:41,083
+add
+
+103
+00:04:43,417 --> 00:04:46,350
+five here and the same thing
+
+104
+00:04:46,350 --> 00:04:49,017
+if I done here.
+
+105
+00:04:50,684 --> 00:04:53,617
+Look what happens. And if we run this
+
+106
+00:04:53,617 --> 00:04:56,284
+code again, you can
+
+107
+00:04:56,284 --> 00:04:59,184
+see two and three, two and three, two
+
+108
+00:04:59,184 --> 00:05:01,618
+and three. That means that means
+
+109
+00:05:02,018 --> 00:05:04,751
+there are three columns and two
+
+110
+00:05:04,751 --> 00:05:07,152
+rows, right?If I come to the diagram
+
+111
+00:05:07,152 --> 00:05:10,085
+again, if I draw another
+
+112
+00:05:10,085 --> 00:05:13,035
+column. Here OK and if I
+
+113
+00:05:13,502 --> 00:05:16,235
+draw if I extend our row and we can
+
+114
+00:05:16,335 --> 00:05:19,236
+put some more values here also right
+
+115
+00:05:19,802 --> 00:05:20,502
+346
+
+116
+00:05:23,369 --> 00:05:26,303
+or anything else right?I hope you get
+
+117
+00:05:26,303 --> 00:05:29,103
+the point. Now tensorflow. Why
+
+118
+00:05:29,103 --> 00:05:31,703
+this data?Why this data and this
+
+119
+00:05:31,836 --> 00:05:33,770
+table is very?
+
+120
+00:05:35,170 --> 00:05:37,903
+Important because when
+
+121
+00:05:37,970 --> 00:05:40,170
+this data when this table
+
+122
+00:05:40,837 --> 00:05:42,837
+in belongs to and creates A
+
+123
+00:05:42,837 --> 00:05:45,437
+multidimensional array like this, this
+
+124
+00:05:45,437 --> 00:05:48,271
+could be very very complex one. OK, this
+
+125
+00:05:48,271 --> 00:05:50,471
+could be very very complex one. Now let
+
+126
+00:05:50,471 --> 00:05:52,971
+me just tell you some more
+
+127
+00:05:52,971 --> 00:05:55,571
+about more
+
+128
+00:05:55,571 --> 00:05:58,538
+about the. Types of machine
+
+129
+00:05:58,538 --> 00:05:59,771
+learning because understanding these
+
+130
+00:05:59,771 --> 00:06:02,005
+categories helps you identify what kind
+
+131
+00:06:02,005 --> 00:06:03,472
+of problem you are trying to solve and
+
+132
+00:06:03,838 --> 00:06:06,072
+which machine learning algorithms or
+
+133
+00:06:06,072 --> 00:06:08,039
+approaches might be suitable. There are
+
+134
+00:06:08,039 --> 00:06:10,105
+many types of machine learning algorithms
+
+135
+00:06:10,505 --> 00:06:13,239
+and you can learn them. OK, you can learn
+
+136
+00:06:13,239 --> 00:06:15,839
+them and you can whenever you if you
+
+137
+00:06:16,039 --> 00:06:18,239
+practice more, you will
+
+138
+00:06:18,772 --> 00:06:20,773
+watch the data and you will
+
+139
+00:06:20,906 --> 00:06:23,839
+immediately. Understand what type of
+
+140
+00:06:23,839 --> 00:06:26,640
+machine learning algorithms can be used
+
+141
+00:06:26,640 --> 00:06:29,440
+for solving that problem. Now we broadly
+
+142
+00:06:29,440 --> 00:06:30,973
+categorize machine learning into three
+
+143
+00:06:30,973 --> 00:06:33,340
+main types. OK, number one is supervised
+
+144
+00:06:33,340 --> 00:06:36,174
+learning. OK, the idea is this is
+
+145
+00:06:36,174 --> 00:06:37,907
+like learning with a teacher. That means
+
+146
+00:06:37,907 --> 00:06:39,240
+you provide the algorithms with a data
+
+147
+00:06:39,240 --> 00:06:41,974
+set that contains labeled examples. This
+
+148
+00:06:41,974 --> 00:06:44,107
+means for each piece of input data you
+
+149
+00:06:44,107 --> 00:06:46,041
+also provide the correct output of label
+
+150
+00:06:46,041 --> 00:06:48,641
+that. Corresponds to it. OK so
+
+151
+00:06:49,241 --> 00:06:51,774
+I will give you examples of course and
+
+152
+00:06:52,174 --> 00:06:54,908
+examples like suppose e-mail spam or not
+
+153
+00:06:54,908 --> 00:06:57,775
+spam. OK what type of animal is in this
+
+154
+00:06:57,775 --> 00:06:59,642
+image that is cat, dog, bird etcetera.
+
+155
+00:06:59,775 --> 00:07:02,575
+Multi class classification right. So
+
+156
+00:07:02,775 --> 00:07:05,642
+basically what is in in this
+
+157
+00:07:05,642 --> 00:07:08,475
+place if you in instead of 123 if you
+
+158
+00:07:08,775 --> 00:07:11,542
+place image of dog and cat. OK,
+
+159
+00:07:11,576 --> 00:07:13,976
+dog and cat, dog and cat etc. And label
+
+160
+00:07:13,976 --> 00:07:16,509
+them as dog, dog to dog, cat to cat
+
+161
+00:07:16,676 --> 00:07:19,243
+etc. Then that is the supervised
+
+162
+00:07:19,643 --> 00:07:22,243
+learning. OK, that is
+
+163
+00:07:22,643 --> 00:07:24,710
+supervised learning and how it works. It
+
+164
+00:07:24,710 --> 00:07:26,510
+is simplified version. The algorithm sees
+
+165
+00:07:26,510 --> 00:07:28,443
+many examples. That means there are lot
+
+166
+00:07:28,443 --> 00:07:30,977
+of dogs and lot of cats
+
+167
+00:07:30,977 --> 00:07:33,510
+images. So just like a child
+
+168
+00:07:34,044 --> 00:07:36,977
+the tensors. The Tensorflow library and
+
+169
+00:07:37,110 --> 00:07:39,111
+the machine learning algorithms know how
+
+170
+00:07:39,111 --> 00:07:41,844
+to separate them and take them out
+
+171
+00:07:42,111 --> 00:07:44,644
+as separately. OK, and
+
+172
+00:07:44,911 --> 00:07:47,311
+in the case of spam emails the same thing
+
+173
+00:07:47,311 --> 00:07:50,178
+happens. Second is unsupervised learning.
+
+174
+00:07:50,178 --> 00:07:52,111
+That means there is. This is like
+
+175
+00:07:52,111 --> 00:07:53,745
+learning without a teacher. You provide
+
+176
+00:07:53,745 --> 00:07:55,245
+the algorithms with a data set that does
+
+177
+00:07:55,245 --> 00:07:57,512
+not have any labeled examples. And
+
+178
+00:07:57,778 --> 00:08:00,178
+example common task is clustering. That
+
+179
+00:08:00,178 --> 00:08:02,279
+means segmenting customers into different
+
+180
+00:08:02,279 --> 00:08:04,112
+groups based on their purchasing behavior
+
+181
+00:08:04,712 --> 00:08:06,779
+or dimensionality reduction. That means
+
+182
+00:08:06,779 --> 00:08:08,312
+reducing the number of features or
+
+183
+00:08:08,312 --> 00:08:10,579
+variables in a data set while while
+
+184
+00:08:10,579 --> 00:08:12,546
+returning as much important information
+
+185
+00:08:12,546 --> 00:08:14,513
+as possible. Example is compressing
+
+186
+00:08:14,513 --> 00:08:16,779
+images, simplifying complex data sets for
+
+187
+00:08:16,779 --> 00:08:19,080
+visualization or faster processing. OK.
+
+188
+00:08:19,980 --> 00:08:22,847
+And how it works?The algorithm analyzes
+
+189
+00:08:22,847 --> 00:08:25,380
+the data and finds inherent groupings or
+
+190
+00:08:25,447 --> 00:08:27,847
+ways to represent the data more simply
+
+191
+00:08:27,980 --> 00:08:30,380
+without being told what to look for. And
+
+192
+00:08:30,380 --> 00:08:33,114
+finally there is another type of learning
+
+193
+00:08:33,114 --> 00:08:35,181
+that is called reinforcement learning or
+
+194
+00:08:35,181 --> 00:08:37,981
+RL. The idea is it is like
+
+195
+00:08:37,981 --> 00:08:40,114
+learning through trial and error based on
+
+196
+00:08:40,114 --> 00:08:42,348
+rewards and penalties. An agent, the
+
+197
+00:08:42,348 --> 00:08:43,914
+learning program interacts with an
+
+198
+00:08:43,914 --> 00:08:45,681
+environment. For each action the agent
+
+199
+00:08:45,681 --> 00:08:47,515
+takes, it receives a reward, that means
+
+200
+00:08:47,515 --> 00:08:49,515
+positive or negative. The agent's goal is
+
+201
+00:08:49,515 --> 00:08:51,515
+to learn a strategy, a policy that
+
+202
+00:08:51,515 --> 00:08:54,248
+maximizes the total cumulative
+
+203
+00:08:54,248 --> 00:08:57,182
+reward overtime. Now what
+
+204
+00:08:57,182 --> 00:08:58,715
+are the common tasks or algorithms?
+
+205
+00:08:58,982 --> 00:09:00,882
+Training agents to play games?That means
+
+206
+00:09:00,882 --> 00:09:03,516
+AlphaGo or game AI teaching robots to
+
+207
+00:09:03,516 --> 00:09:05,782
+perform tasks. Training, autonomous
+
+208
+00:09:05,782 --> 00:09:08,149
+vehicles, resource management, optimizing
+
+209
+00:09:08,149 --> 00:09:10,983
+energy consumption and there are lot of
+
+210
+00:09:11,383 --> 00:09:13,716
+more things it can do. So reinforcement
+
+211
+00:09:13,716 --> 00:09:15,383
+learning is fascinating field but it is
+
+212
+00:09:15,383 --> 00:09:17,416
+significantly different from supervised
+
+213
+00:09:17,416 --> 00:09:19,417
+and unsupervised learning and requires a
+
+214
+00:09:19,417 --> 00:09:20,917
+different set of techniques and
+
+215
+00:09:20,917 --> 00:09:23,450
+algorithms. While Tensorflow can be used
+
+216
+00:09:23,450 --> 00:09:25,950
+for reinforcement learning, there is a
+
+217
+00:09:26,384 --> 00:09:28,984
+library called TF Agents. It is
+
+218
+00:09:28,984 --> 00:09:31,051
+typically considered a separate area of
+
+219
+00:09:31,051 --> 00:09:33,317
+study. After grasping supervised learning
+
+220
+00:09:33,317 --> 00:09:35,384
+fundamentals, we will not be covering
+
+221
+00:09:35,384 --> 00:09:36,851
+reinforcement learning in this
+
+222
+00:09:36,851 --> 00:09:38,784
+introductory course because I again
+
+223
+00:09:38,784 --> 00:09:41,485
+repeat, this is a very advanced sector.
+
+224
+00:09:41,651 --> 00:09:44,185
+So we will concentrate mainly on
+
+225
+00:09:44,518 --> 00:09:46,551
+supervised learning and unsupervised
+
+226
+00:09:46,585 --> 00:09:49,185
+learning. OK, so that much today
+
+227
+00:09:49,452 --> 00:09:50,852
+and in the next,
+
+228
+00:09:52,785 --> 00:09:53,519
+in the next. Uh,
+
+229
+00:09:55,852 --> 00:09:58,519
+next video I will talk about Keras. That
+
+230
+00:09:58,519 --> 00:10:00,919
+means the API of the tensorflow and how
+
+231
+00:10:00,919 --> 00:10:03,853
+we can just use this one,
+
+232
+00:10:04,253 --> 00:10:06,853
+this diagrams
+
+233
+00:10:07,386 --> 00:10:10,320
+and use Keras to understand how it
+
+234
+00:10:10,320 --> 00:10:12,253
+works. OK, so till then, goodbye.
+
+235
+00:10:13,453 --> 00:10:16,187
+See you in the next video. Take care
+
+236
+00:10:16,353 --> 00:10:17,187
+and stay safe.`;
+
+            /**
+             * Parses the raw text content of an SRT file to extract only the text,
+             * merging multiline subtitles into a single line.
+             * @param {string} text - The raw SRT text.
+             * @returns {Array<string>} An array of subtitle text lines.
+             */
+            function parseSRTForText(text) {
+                const regex = /(\d+)\s*\n\s*(\d{2}:\d{2}:\d{2},\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2},\d{3})\s*\n([\s\S]+?)(?=\n\n|\n*$)/g;
+                const subtitles = [];
+                let match;
+                regex.lastIndex = 0;
+                while ((match = regex.exec(text)) !== null) {
+                    // Clean up text: remove newlines within a subtitle and trim whitespace
+                    const cleanedText = match[4].replace(/\n/g, ' ').trim();
+                    subtitles.push(cleanedText);
+                }
+                return subtitles;
+            }
+
+            const transcriptLines = parseSRTForText(srtData);
+            
+            // --- Populate Blog Post ---
+            const blogContentEl = document.getElementById('blog-content');
+            if (blogContentEl) {
+                // Combine all lines into a single coherent text block for the article.
+                 const blogHTML = `<p>${transcriptLines.join(' ')}</p>`;
+                blogContentEl.innerHTML = blogHTML;
+            }
+
+            // --- Populate Key Moments Summary ---
+            const keyMomentsEl = document.getElementById('key-moments');
+            if (keyMomentsEl) {
+                // Manually crafted key moments from the new transcript for better quality.
+                const moments = [
+                    "Tensors are multi-dimensional arrays used to handle complex data structures, visualized as tables with rows and columns.",
+                    "Machine learning is broadly categorized into three main types: Supervised, Unsupervised, and Reinforcement Learning.",
+                    "<b>Supervised Learning</b> uses labeled data (like a 'teacher') to make predictions, such as in spam detection or image classification.",
+                    "<b>Unsupervised Learning</b> finds patterns in unlabeled data, used for tasks like customer segmentation or data compression.",
+                    "<b>Reinforcement Learning</b> involves an 'agent' learning through trial and error with rewards and penalties, used in gaming AI and robotics.",
+                    "This course will focus on supervised and unsupervised learning, as reinforcement learning is a more advanced topic."
+                ];
+                
+                const momentsHTML = moments.map(moment => `
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-blue-400 mt-1 mr-3 flex-shrink-0"></i>
+                        <span class="text-gray-300">${moment}</span>
+                    </li>
+                `).join('');
+                keyMomentsEl.innerHTML = momentsHTML;
+            }
+
+        });
+    </script>
+
+</body>
+</html>
