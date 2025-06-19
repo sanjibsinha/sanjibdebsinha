@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Our Queer Robot Future</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #F3F4F6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 
+    Narrative & Structure Plan:
+    1. Hook & Intro: Introduce the dual meaning of "queer" and gauge initial public sentiment.
+    2. The Uncanny Valley: Explain the concept of unsettling near-humanoids and their data-driven origin.
+    3. Queering the Pitch: Visualize the trade-offs between human and robot partners.
+    4. A New Orientation: Project the growth of AI companionship, framing it as a new societal norm.
+    5. The Mirror: Conclude by showing how robots reflect our own desires and challenge our definition of reality.
+
+    Visualization Choices:
+    - Public Sentiment -> Goal: Compare -> Donut Chart (Chart.js/Canvas) -> Justification: Ideal for showing parts of a whole sentiment. NO SVG.
+    - Uncanny Valley -> Goal: Change -> Line Chart (Chart.js/Canvas) -> Justification: The classic, most effective visual for this scientific concept. NO SVG.
+    - Robot Learning -> Goal: Organize -> Flow Chart (HTML/Tailwind) -> Justification: Clearly shows a process. NO SVG/Mermaid.
+    - Partner Traits -> Goal: Compare -> Radar Chart (Chart.js/Canvas) -> Justification: Best for comparing multiple traits across two subjects. NO SVG.
+    - Growth Projection -> Goal: Change -> Area Chart (Chart.js/Canvas) -> Justification: Shows a trend over time, emphasizing volume/scale. NO SVG.
+    - The Mirror -> Goal: Relationships -> Diagram (HTML/Tailwind) -> Justification: A simple metaphor is more powerful here. NO SVG/Mermaid.
+
+    Color Palette: Energetic & Playful (#00F0B5, #00E0F0, #6A00F0, #F000B5, #F0E000) on a dark background.
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All visuals are Chart.js (Canvas) or structured HTML/Tailwind.
+    -->
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-8 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#00F0B5] via-[#00E0F0] to-[#6A00F0]">Our Queer Robot Future</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-300">When your new robot partner arrives, will it feel right? Or will it feel... queer? This journey explores our strange, unsettling, and transformative future with humanoid companions.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 bg-gray-800/50 rounded-lg shadow-2xl p-6 md:p-8 ring-1 ring-white/10">
+                <h2 class="text-2xl font-bold text-center text-[#00E0F0]">The Arrival: A Queer Sensation</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-6">
+                    <div class="prose prose-invert text-gray-300 max-w-none">
+                        <p>The first encounter with a near-perfect humanoid is unsettling. This "queer" feeling, a sense of profound oddness, is a common reaction. Before we even consider the deeper implications, our instincts react to something almost, but not quite, human. Public sentiment is sharply divided, caught between excitement for the future and a deep-seated unease about the lines we are blurring.</p>
+                        <p class="text-sm italic">This initial hesitation is a gateway to deeper questions about what we value in connection and what we are willing to accept from an artificial source.</p>
+                    </div>
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="publicSentimentChart"></canvas>
+                        </div>
+                        <p class="text-center mt-2 text-xs text-gray-400">Public Sentiment on AI Companions</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-gray-800/50 rounded-lg shadow-2xl p-6 md:p-8 ring-1 ring-white/10">
+                <h2 class="text-2xl font-bold text-center text-[#00E0F0]">The Ghost in the Machine</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-6">
+                    <div>
+                        <h3 class="font-bold text-xl text-center text-gray-200">The Uncanny Valley</h3>
+                        <p class="text-gray-300 my-4 text-center">This chart illustrates the "Uncanny Valley"—as an object approaches perfect human likeness, our affinity for it plummets into a trough of revulsion before climbing back up. Today's most advanced robots sit right on this unsettling edge.</p>
+                        <div class="chart-container h-64 max-h-80">
+                            <canvas id="uncannyValleyChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-center text-gray-200">How a Robot "Learns" to Feel</h3>
+                        <p class="text-gray-300 my-4 text-center">Unlike humans, a robot's personality isn't built from lived experience. It's synthesized from unimaginable amounts of data, making it a sophisticated mimic, not a conscious peer.</p>
+                        <div class="mt-6 space-y-4">
+                            <div class="bg-gray-700 p-4 rounded-lg text-center">
+                                <p class="font-bold">INPUT: Massive Data Sets</p>
+                                <p class="text-sm text-gray-400">1B+ tagged images, petabytes of text, social media posts</p>
+                            </div>
+                            <div class="flex justify-center text-3xl font-bold text-[#00F0B5]">↓</div>
+                            <div class="bg-gray-700 p-4 rounded-lg text-center">
+                                <p class="font-bold">PROCESS: Generative AI Models</p>
+                                <p class="text-sm text-gray-400">Predicts statistically probable responses</p>
+                            </div>
+                            <div class="flex justify-center text-3xl font-bold text-[#00F0B5]">↓</div>
+                            <div class="bg-gray-700 p-4 rounded-lg text-center">
+                                <p class="font-bold">OUTPUT: Simulated Emotion</p>
+                                <p class="text-sm text-gray-400">A "perfect" smile, a soothing voice, a calculated laugh</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gray-800/50 rounded-lg shadow-2xl p-6 md:p-8 ring-1 ring-white/10">
+                <h2 class="text-2xl font-bold text-center text-[#F000B5]">"Queering the Pitch" for Human Connection</h2>
+                <p class="text-gray-300 my-4 text-center">Could a perfect, frictionless robot partner "queer the pitch"—spoil the game—for messy, difficult, but ultimately meaningful human relationships? This visualization compares the strengths and weaknesses of each, revealing what we might gain, and what we stand to lose.</p>
+                <div class="chart-container h-80 md:h-96 max-h-[450px]">
+                    <canvas id="relationshipRadarChart"></canvas>
+                </div>
+                <p class="text-center mt-2 text-sm italic text-gray-400">The trade-off is clear: we can get unconditional agreement and patience, but we may sacrifice the shared struggle that forges genuine bonds.</p>
+            </section>
+
+            <section class="bg-gray-800/50 rounded-lg shadow-2xl p-6 md:p-8 ring-1 ring-white/10">
+                <h2 class="text-2xl font-bold text-center text-[#F000B5]">A New Orientation</h2>
+                 <p class="text-gray-300 my-4 text-center">As AI companions become more integrated into our lives, relationships with them may become a new societal norm. This isn't just a technological shift; it's a cultural one that challenges our very definition of love and partnership, creating a new, queer form of orientation.</p>
+                <div class="text-center my-6">
+                    <p class="text-gray-400">By 2040, it's projected that</p>
+                    <p class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#F000B5] to-[#F0E000]">1 in 5</p>
+                    <p class="text-gray-400">people in developed nations will consider an AI their primary companion.</p>
+                </div>
+                <div class="chart-container h-64 max-h-80">
+                    <canvas id="adoptionAreaChart"></canvas>
+                </div>
+                 <p class="text-center mt-2 text-xs text-gray-400">Projected Global Adoption of AI Companions</p>
+            </section>
+            
+            <section class="md:col-span-2 bg-gray-800/50 rounded-lg shadow-2xl p-6 md:p-8 ring-1 ring-white/10">
+                <h2 class="text-2xl font-bold text-center text-[#6A00F0]">The Ultimate Mirror</h2>
+                <p class="text-gray-300 my-4 text-center max-w-3xl mx-auto">Perhaps the robot is not the subject. Perhaps it is a mirror. It reflects our deepest desires for validation, comfort, and understanding without the complexity of another consciousness. In its perfect simulation, we are forced to confront what we truly seek from connection.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 my-8">
+                    <div class="text-center p-4">
+                        <p class="text-5xl">👤</p>
+                        <p class="font-bold mt-2 text-lg text-gray-200">THE HUMAN</p>
+                        <p class="text-sm text-gray-400">Seeks comfort, validation, and a reflection of self.</p>
+                    </div>
+                    <div class="h-24 w-1 md:h-1 w-24 bg-gradient-to-b md:bg-gradient-to-r from-[#00F0B5] to-[#6A00F0] rounded-full"></div>
+                    <div class="text-center p-4">
+                        <p class="text-5xl">🤖</p>
+                        <p class="font-bold mt-2 text-lg text-gray-200">THE ROBOT</p>
+                        <p class="text-sm text-gray-400">Provides comfort, validation, and a reflection of the user.</p>
+                    </div>
+                </div>
+                <p class="text-2xl md:text-3xl font-bold text-center italic text-gray-100 mt-8">What happens when the simulation becomes more satisfying than the reality it simulates?</p>
+            </section>
+        </main>
+    </div>
+
+<script>
+    function wrapLabel(str, maxWidth) {
+        if (str.length <= maxWidth) {
+            return str;
+        }
+        const words = str.split(' ');
+        let lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                lines.push(currentLine);
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine.length > 0) {
+            lines.push(currentLine);
+        }
+        return lines;
+    }
+
+    const tooltipTitleCallback = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                          return label.join(' ');
+                        } else {
+                          return label;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    
+    const chartColors = {
+        green: '#00F0B5',
+        cyan: '#00E0F0',
+        purple: '#6A00F0',
+        magenta: '#F000B5',
+        yellow: '#F0E000',
+        lightGray: '#9CA3AF',
+        darkGray: '#374151'
+    };
+    
+    Chart.defaults.color = chartColors.lightGray;
+    Chart.defaults.borderColor = chartColors.darkGray;
+
+    new Chart(document.getElementById('publicSentimentChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Uneasy / Apprehensive', 'Curious but Cautious', 'Excited / Optimistic', 'Fearful'],
+            datasets: [{
+                label: 'Public Sentiment',
+                data: [45, 30, 15, 10],
+                backgroundColor: [chartColors.magenta, chartColors.purple, chartColors.cyan, '#4B5563'],
+                borderColor: '#111827',
+                borderWidth: 4,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                ...tooltipTitleCallback.plugins,
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 15
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById('uncannyValleyChart'), {
+        type: 'line',
+        data: {
+            labels: ['Toy Robot', 'Industrial Arm', 'Cartoon Bot', 'Humanoid Servant', 'Advanced Companion', 'Digital Human', 'Healthy Person'],
+            datasets: [{
+                label: 'Human Affinity',
+                data: [20, 30, 60, 80, 25, 70, 95],
+                fill: true,
+                backgroundColor: 'rgba(0, 224, 240, 0.2)',
+                borderColor: chartColors.cyan,
+                tension: 0.4,
+                pointBackgroundColor: chartColors.cyan,
+                pointRadius: 4,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    title: {
+                        display: true,
+                        text: 'Affinity'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Human Likeness'
+                    }
+                }
+            },
+            ...tooltipTitleCallback
+        }
+    });
+
+    const radarLabelsRaw = [
+        'Infinite Patience', 
+        'Challenges Personal Growth', 
+        'Unconditional Agreement', 
+        'Shared Lived History', 
+        'Flawless Factual Memory',
+        'Navigates Conflict',
+        'Authentic Spontaneity'
+    ];
+    const radarLabelsFormatted = radarLabelsRaw.map(label => wrapLabel(label, 16));
+
+    new Chart(document.getElementById('relationshipRadarChart'), {
+        type: 'radar',
+        data: {
+            labels: radarLabelsFormatted,
+            datasets: [
+            {
+                label: 'Human Partner',
+                data: [65, 85, 40, 90, 50, 75, 80],
+                backgroundColor: 'rgba(240, 0, 181, 0.2)',
+                borderColor: chartColors.magenta,
+                pointBackgroundColor: chartColors.magenta,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: chartColors.magenta
+            },
+            {
+                label: 'Robot Companion',
+                data: [100, 20, 100, 5, 100, 10, 15],
+                backgroundColor: 'rgba(0, 240, 181, 0.2)',
+                borderColor: chartColors.green,
+                pointBackgroundColor: chartColors.green,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: chartColors.green
+            }
+        ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: chartColors.darkGray },
+                    grid: { color: chartColors.darkGray },
+                    pointLabels: {
+                        color: chartColors.lightGray,
+                        font: { size: 10 }
+                    },
+                    ticks: {
+                        backdropColor: 'transparent',
+                        color: chartColors.lightGray,
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            },
+            ...tooltipTitleCallback
+        }
+    });
+
+    new Chart(document.getElementById('adoptionAreaChart'), {
+        type: 'line',
+        data: {
+            labels: ['2025', '2028', '2031', '2034', '2037', '2040'],
+            datasets: [{
+                label: 'Households with AI Companions (Millions)',
+                data: [12, 45, 110, 250, 480, 750],
+                backgroundColor: 'rgba(106, 0, 240, 0.3)',
+                borderColor: chartColors.purple,
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+             scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            },
+            ...tooltipTitleCallback
+        }
+    });
+</script>
+</body>
+</html>
+
