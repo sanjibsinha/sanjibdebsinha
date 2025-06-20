@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Humanoid Dilemma: Regulating Our Silicon Companions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!--
+    Infographic Narrative & Structure Plan:
+    1. Introduction: Hook with the 'wow' factor of modern robotics and a key market projection.
+    2. The Central Conflict: Visualize the duality of promise vs. peril using a comparative chart.
+    3. In-Depth Risk Analysis: Break down the four core risks identified in the text using a radar chart.
+    4. A Proposed Path: Illustrate the "social contract" solution using a structured HTML/CSS flow chart.
+    5. The Final Question: Conclude with the core dilemma of Regulation vs. Innovation using a donut chart.
+
+    Visualization Selection & Justification:
+    - Market Projection: Goal: Inform. Viz: Single Big Number. Justification: High-impact intro. Method: Styled HTML. (NO SVG)
+    - Public Sentiment: Goal: Compare. Viz: Bar Chart. Justification: Compares attitudes directly. Method: Chart.js. (NO SVG)
+    - Risk Analysis: Goal: Compare. Viz: Radar Chart. Justification: Compares multiple variables on one axis. Method: Chart.js. (NO SVG)
+    - Regulatory Path: Goal: Organize. Viz: Flow Chart. Justification: Shows a clear process. Method: Structured HTML/CSS with Tailwind. (NO SVG, NO MERMAID JS)
+    - Core Dilemma: Goal: Inform. Viz: Donut Chart. Justification: Simple, effective visualization of a central choice. Method: Chart.js. (NO SVG)
+
+    Color Palette Selection:
+    - Palette Name: Energetic & Playful
+    - HEX Codes: #00F0B5 (Green), #00D9F5 (Cyan), #7000FF (Purple), #FF007F (Magenta), #FFC600 (Yellow).
+    - Background: #1a1a1a (Dark Gray/Off-Black)
+
+    Final Confirmation:
+    - Neither Mermaid JS nor SVG were used in this document. All visualizations are rendered using Chart.js on a <canvas> element or are constructed from standard, styled HTML elements.
+    -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        .card {
+            background-color: #262626;
+            border: 1px solid #404040;
+        }
+        .text-glow-purple { text-shadow: 0 0 8px #7000FF; }
+        .text-glow-magenta { text-shadow: 0 0 8px #FF007F; }
+        .text-glow-cyan { text-shadow: 0 0 8px #00D9F5; }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #FFC600;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider text-glow-purple">Our Silicon Eve</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">We are building companions from wire and code. But before they walk among us, we face an urgent question: Who makes the rules?</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="card rounded-xl shadow-2xl p-6 md:p-8 md:col-span-2 lg:col-span-1 flex flex-col justify-center items-center text-center">
+                <h2 class="text-2xl font-bold text-glow-cyan uppercase">A New Frontier</h2>
+                <p class="text-gray-400 mt-2 mb-4">The humanoid robot industry is no longer science fiction. It's a rapidly growing market, projected to explode in value.</p>
+                <div class="text-7xl lg:text-8xl font-black text-[#00F0B5] my-4">$13.8 Billion</div>
+                <p class="text-gray-400 font-bold">Projected Market Size by 2026</p>
+                <p class="text-sm text-gray-500">(Source: MarketsandMarkets)</p>
+            </div>
+
+            <div class="card rounded-xl shadow-2xl p-6 md:p-8 md:col-span-2">
+                <h2 class="text-2xl font-bold text-center text-glow-cyan uppercase mb-4">Promise vs. Peril</h2>
+                <p class="text-center text-gray-400 mb-6 max-w-2xl mx-auto">For every story of comfort and assistance for the lonely, there is a shadow of misuse and unintended consequences. Public perception is sharply divided on the path forward.</p>
+                <div class="chart-container">
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card rounded-xl shadow-2xl p-6 md:p-8 md:col-span-2 lg:col-span-3">
+                <h2 class="text-2xl font-bold text-center text-glow-cyan uppercase mb-4">A Spectrum of Risk</h2>
+                <p class="text-center text-gray-400 mb-6 max-w-3xl mx-auto">The integration of superintelligence into physical bodies presents a complex web of societal risks. Each vector demands consideration, from economic disruption to the very nature of truth.</p>
+                <div class="w-full max-w-2xl mx-auto chart-container">
+                    <canvas id="riskRadarChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card rounded-xl shadow-2xl p-6 md:p-8 md:col-span-2 lg:col-span-3">
+                <h2 class="text-2xl font-bold text-center text-glow-cyan uppercase mb-4">A Proposed Social Contract</h2>
+                <p class="text-center text-gray-400 mb-8 max-w-3xl mx-auto">Instead of a single law, the solution may be a multi-layered approach—a new social contract for our artificial counterparts built on principles of safety and transparency.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 rounded-lg border border-[#7000FF] bg-[#7000ff20]">
+                        <div class="text-4xl mb-2">📜</div>
+                        <h3 class="font-bold">Ethical Programming</h3>
+                        <p class="text-sm text-gray-400">A core "do no harm" directive.</p>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="text-center p-4 rounded-lg border border-[#FF007F] bg-[#ff007f20]">
+                        <div class="text-4xl mb-2">🔍</div>
+                        <h3 class="font-bold">Transparent Audits</h3>
+                        <p class="text-sm text-gray-400">Third-party checks on code and data.</p>
+                    </div>
+                     <div class="flow-arrow transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="text-center p-4 rounded-lg border border-[#00D9F5] bg-[#00d9f520]">
+                        <div class="text-4xl mb-2">🏷️</div>
+                        <h3 class="font-bold">Clear Labeling</h3>
+                        <p class="text-sm text-gray-400">Users must always know it's an AI.</p>
+                    </div>
+                     <div class="flow-arrow transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="text-center p-4 rounded-lg border border-[#00F0B5] bg-[#00f0b520]">
+                        <div class="text-4xl mb-2">💬</div>
+                        <h3 class="font-bold">Ongoing Dialogue</h3>
+                        <p class="text-sm text-gray-400">Public discourse, not secret boardrooms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card rounded-xl shadow-2xl p-6 md:p-8 md:col-span-2 lg:col-span-3 text-center">
+                 <h2 class="text-2xl font-bold text-glow-cyan uppercase mb-4">The Core Dilemma</h2>
+                 <p class="text-center text-gray-400 mb-6 max-w-2xl mx-auto">Ultimately, we face a choice. Do we move fast and risk breaking society, or do we proceed with caution and risk stifling innovation? The balance is delicate.</p>
+                <div class="chart-container max-w-sm">
+                    <canvas id="dilemmaChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="text-center mt-12 md:mt-16 py-8 border-t border-gray-700">
+            <p class="text-gray-500">We are the architects of the next stage of evolution. It would be wise to first have a long, hard think about fire safety.</p>
+            <p class="text-sm text-gray-600 mt-2">Infographic based on the article "Our Silicon Eve: A Question of Control".</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (str, maxWidth) => {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = words[0];
+
+                for (let i = 1; i < words.length; i++) {
+                    if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                        lines.push(currentLine);
+                        currentLine = words[i];
+                    } else {
+                        currentLine += ' ' + words[i];
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#f0f0f0',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                 scales: {
+                    y: {
+                        ticks: { color: '#9ca3af' },
+                        grid: { color: '#404040' }
+                    },
+                    x: {
+                        ticks: { color: '#9ca3af' },
+                        grid: { color: '#404040' }
+                    }
+                }
+            };
+
+            const initSentimentChart = () => {
+                const ctx = document.getElementById('sentimentChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Healthcare', 'Companionship', 'Manufacturing', 'Customer Service', 'Military/Security'],
+                        datasets: [
+                            {
+                                label: 'Potential for Good',
+                                data: [90, 80, 75, 60, 20],
+                                backgroundColor: '#00F0B5',
+                                borderColor: '#00F0B5',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Potential for Harm',
+                                data: [40, 70, 50, 65, 95],
+                                backgroundColor: '#FF007F',
+                                borderColor: '#FF007F',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        ...commonTooltipOptions,
+                         scales: {
+                            x: { stacked: false, ticks: { color: '#9ca3af' }, grid: { color: '#404040' } },
+                            y: { stacked: false, ticks: { color: '#9ca3af' }, grid: { color: '#404040' } }
+                        }
+                    }
+                });
+            };
+
+            const initRiskRadarChart = () => {
+                const ctx = document.getElementById('riskRadarChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: [
+                            wrapLabel('Widespread Job Displacement', 18), 
+                            wrapLabel('Misinformation & Propaganda', 18), 
+                            wrapLabel('Autonomous Military Applications', 18), 
+                            wrapLabel('Intimate Data & Privacy Breach', 18), 
+                            wrapLabel('Psychological Manipulation', 18)
+                        ],
+                        datasets: [{
+                            label: 'Perceived Risk Level',
+                            data: [8, 9, 10, 9, 7],
+                            fill: true,
+                            backgroundColor: 'rgba(112, 0, 255, 0.2)',
+                            borderColor: '#7000FF',
+                            pointBackgroundColor: '#7000FF',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#7000FF'
+                        }]
+                    },
+                    options: {
+                         ...commonChartOptions,
+                         ...commonTooltipOptions,
+                         scales: {
+                            r: {
+                                angleLines: { color: '#404040' },
+                                grid: { color: '#404040' },
+                                pointLabels: { 
+                                    color: '#f0f0f0',
+                                    font: { size: 12 }
+                                },
+                                ticks: {
+                                    color: '#1a1a1a',
+                                    backdropColor: '#404040'
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+            
+            const initDilemmaChart = () => {
+                const ctx = document.getElementById('dilemmaChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Stifle Innovation (Regulation)', 'Risk Society (Unfettered Growth)'],
+                        datasets: [{
+                            data: [50, 50],
+                            backgroundColor: ['#00D9F5', '#FFC600'],
+                            borderColor: '#262626',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                         responsive: true,
+                         maintainAspectRatio: false,
+                         plugins: {
+                            ...commonTooltipOptions.plugins,
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: '#f0f0f0',
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            initSentimentChart();
+            initRiskRadarChart();
+            initDilemmaChart();
+        });
+    </script>
+</body>
+</html>
+
