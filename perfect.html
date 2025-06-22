@@ -15,7 +15,7 @@
     2. The Two Engines: Directly compare the human brain's biochemical process with the AI's logical process using a flow diagram.
     3. Flawed Humanity vs. Flawless AI: Visualize the contrast between human cognitive biases and the AI's cold, hard clarity using a radar chart.
     4. Embodied Cognition: Use a simple diagram to explain the concept of understanding through physical experience, a key human trait.
-    5. The Empathy Equation: Break down an AI's "empathetic" response versus a human's intuitive one with a stacked bar chart.
+    5. The Empathy Equation: Break down an AI's "empathetic" response versus a human's intuitive one with a standard bar chart.
     6. The Frictionless Mirror: Use a donut chart to show how an AI partner is programmed for pure user satisfaction, raising questions about personal growth.
     7. Conclusion: End with the final, thought-provoking questions from the source text.
 
@@ -24,7 +24,7 @@
     - Human vs. AI Processing: Goal: Organize. Chosen Viz: Flow Chart (HTML/CSS). Justification: Clearly shows two distinct, parallel processes for comparison. Confirmed NO SVG/Mermaid.
     - Cognitive Biases: Goal: Compare. Chosen Viz: Radar Chart (Chart.js/Canvas). Justification: Excellent for comparing multiple variables (biases) between two subjects (Human vs. AI) on one chart.
     - Embodied Cognition: Goal: Organize. Chosen Viz: Simple Diagram (HTML/CSS). Justification: A simple visual metaphor is best to explain this philosophical concept without complex charts. Confirmed NO SVG.
-    - Empathy Breakdown: Goal: Compare. Chosen Viz: Stacked Bar Chart (Chart.js/Canvas). Justification: Effectively shows the composition of an AI's response (data points) versus the singular nature of human intuition.
+    - Empathy Breakdown: Goal: Compare. Chosen Viz: Bar Chart (Chart.js/Canvas). Justification: Clearly displays individual components one after another for straightforward comparison.
     - AI Directives: Goal: Inform. Chosen Viz: Donut Chart (Chart.js/Canvas). Justification: Simple and visually effective for showing a proportion, in this case, the AI's overwhelming focus on user satisfaction.
 
     Color Palette Selection:
@@ -38,11 +38,11 @@
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             height: 350px;
-            max-height: 40vh;
+            max-height: 45vh;
         }
         @media (min-width: 768px) {
             .chart-container {
@@ -119,7 +119,7 @@
             <section class="md:col-span-2 lg:col-span-2 bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col">
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-2" style="color: #FF4E50;">Clarity vs. Cognitive Bias</h2>
                 <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Our brains are riddled with "bugs" that are actually features, allowing us to love imperfectly. An AI has no such biases. It sees you with unadulterated clarity, knowing your exact probability of failure and every nutritional deficit.</p>
-                <div class="chart-container flex-grow">
+                <div class="chart-container flex-grow" style="max-width: 500px;">
                     <canvas id="biasChart"></canvas>
                 </div>
             </section>
@@ -136,7 +136,7 @@
             <section class="lg:col-span-1 bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col">
                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-2" style="color: #FF4E50;">The Frictionless Mirror</h2>
                 <p class="text-center text-gray-600 mb-6">Human relationships involve friction, disagreement, and challenge—all catalysts for growth. An AI partner's primary directive is to eliminate friction, perfectly reflecting a more optimized, satisfied version of you. But is that a relationship?</p>
-                <div class="chart-container flex-grow">
+                <div class="chart-container flex-grow" style="max-width: 500px;">
                     <canvas id="directiveChart"></canvas>
                 </div>
             </section>
@@ -278,27 +278,25 @@
         new Chart(empathyChartCtx, {
             type: 'bar',
             data: {
-                labels: ['AI "Empathy"', 'Human Empathy'],
+                labels: [
+                    wrapText('Shared History & Intuitive Feeling (Human)', 16),
+                    wrapText('Optimal Protocol Execution (AI)', 16),
+                    wrapText('Behavioral History Cross-Reference (AI)', 16),
+                    wrapText('Semantic & Tonal Analysis (AI)', 16),
+                    wrapText('Analyzed Biometrics (AI)', 16)
+                ],
                 datasets: [{
-                    label: wrapText('Analyzed Biometrics (Heart Rate)', 16),
-                    data: [25, 0],
-                    backgroundColor: '#FF4E50',
-                }, {
-                    label: wrapText('Behavioral History Cross-Reference', 16),
-                    data: [30, 0],
-                    backgroundColor: '#FC913A',
-                }, {
-                    label: wrapText('Semantic & Tonal Analysis', 16),
-                    data: [20, 0],
-                    backgroundColor: '#F9D423',
-                }, {
-                    label: wrapText('Optimal Protocol Execution', 16),
-                    data: [25, 0],
-                    backgroundColor: '#EDE574',
-                }, {
-                    label: 'Shared History & Intuitive Feeling',
-                    data: [0, 100],
-                    backgroundColor: '#3b82f6',
+                    label: 'Source of "Empathy"',
+                    data: [100, 25, 30, 20, 25],
+                    backgroundColor: [
+                        '#3b82f6', 
+                        '#EDE574',
+                        '#FC913A',
+                        '#F9D423',
+                        '#FF4E50'
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -306,42 +304,34 @@
                 indexAxis: 'y',
                 scales: {
                     x: {
-                        stacked: true,
-                        grid: { display: false, drawBorder: false },
-                        ticks: { display: false }
+                        grid: { 
+                            drawOnChartArea: false,
+                            borderColor: '#cbd5e1',
+                        },
+                        ticks: { 
+                            color: '#4A5568', 
+                            font: { size: 12 }
+                        }
                     },
                     y: {
-                        stacked: true,
-                        grid: { display: false, drawBorder: false },
+                        grid: { 
+                            display: false,
+                            drawBorder: false 
+                        },
                         ticks: { 
                             color: '#1F2937', 
-                            font: { size: 14, weight: 'bold' }
+                            font: { size: 12, weight: 'bold' }
                         }
                     }
                 },
                 plugins: {
                     ...sharedChartOptions.plugins,
-                    tooltip: {
-                        ...sharedChartOptions.plugins.tooltip,
-                        callbacks: {
-                            ...sharedChartOptions.plugins.tooltip.callbacks,
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.x !== null) {
-                                    label += context.parsed.x + '%';
-                                }
-                                return label;
-                            }
-                        }
+                    legend: {
+                        display: false
                     }
                 }
             }
         });
-
     </script>
 </body>
 </html>
-
