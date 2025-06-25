@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Human & The Machine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-box {
+            border-width: 2px;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .arrow {
+            text-align: center;
+            font-size: 2rem;
+            line-height: 1;
+            padding: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-[#001219] text-[#e9d8a6]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-8 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-2">The Impeccable, Predictable Heart</h1>
+            <p class="text-lg md:text-xl text-[#94d2bd]">Why we dream of a love that doesn't argue back.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 bg-[#005f73]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-white mb-4">The Human Dilemma: A Fading Symphony</h2>
+                <p class="text-[#94d2bd] mb-6">Human relationships are a beautiful, chaotic dance. But what happens when the initial, dazzling passion inevitably fades? We find ourselves in a messy affair of clumsy, unpredictable emotions, where the grand symphony quietens into a monotonous hum.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-[#001219]/70 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">The Half-Life of Charm</h3>
+                        <p class="text-sm text-[#94d2bd] mb-4">The initial excitement in human relationships often declines as familiarity and routine set in.</p>
+                        <div class="chart-container">
+                            <canvas id="passionChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-[#001219]/70 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Common Sources of Friction</h3>
+                        <p class="text-sm text-[#94d2bd] mb-4">This "messiness" often stems from recurring, predictable conflicts.</p>
+                        <div class="chart-container">
+                            <canvas id="frictionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-[#0a9396]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-white mb-4">The Allure of the Artificial</h2>
+                <p class="text-[#94d2bd] mb-6">Tired of the beautiful, exhausting work of loving other humans, we gaze toward a future of circuits and code. We crave a partner forged in a lab—flawless, agreeable, and eternally non-judgmental.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-[#001219]/70 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">The "Perfect" Partner Profile</h3>
+                        <p class="text-sm text-[#94d2bd] mb-4">How does the ideal robot partner stack up against the reality of a human one?</p>
+                        <div class="chart-container">
+                            <canvas id="partnerRadarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-[#001219]/70 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Are We Ready for Robot Love?</h3>
+                        <p class="text-sm text-[#94d2bd] mb-4">A significant portion of the population is open to the idea of forming deep connections with an AI.</p>
+                         <div class="chart-container flex items-center justify-center">
+                            <canvas id="interestDonutChart" style="max-height: 300px; max-width: 300px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 bg-[#94d2bd]/40 rounded-lg shadow-2xl p-6 md:p-8">
+                 <h2 class="text-3xl font-bold text-white mb-4">The Tech Behind the Dream</h2>
+                <p class="text-[#e9d8a6] mb-6">Driven by advances in Large Language Models (LLMs) and the pursuit of AGI, the market for digital companions is no longer science fiction. It's a rapidly growing reality, promising a new kind of vessel for a new kind of mind.</p>
+                <div class="bg-[#001219]/70 rounded-lg p-6">
+                     <h3 class="text-xl font-bold text-white mb-2">Projected Growth of AI Companion Market</h3>
+                     <p class="text-sm text-[#e9d8a6] mb-4">The industry is expected to see exponential growth as technology becomes more sophisticated and accessible.</p>
+                    <div class="chart-container h-[40vh] max-h-[400px]">
+                        <canvas id="marketGrowthChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 bg-[#ee9b00]/30 rounded-lg shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-white mb-4">The Relational Trade-Off</h2>
+                <p class="text-[#e9d8a6] mb-6">What is the fundamental difference between these two relationship models? One is a dialogue that forces growth through friction. The other is a monologue—a flawless, but sterile, echo of our own voice.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-[#001219]/70 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">The Human Cycle: Growth Through Friction</h3>
+                        <div class="flex flex-col items-center">
+                            <div class="flow-box w-full border-[#94d2bd] text-[#94d2bd]">Conflict Arises</div>
+                            <div class="arrow text-[#94d2bd]">↓</div>
+                            <div class="flow-box w-full border-[#94d2bd] text-[#94d2bd]">Messy, Emotional<br>Negotiation</div>
+                            <div class="arrow text-[#94d2bd]">↓</div>
+                             <div class="flow-box w-full border-[#94d2bd] text-[#94d2bd]">Mutual Understanding<br>& Compromise</div>
+                            <div class="arrow text-[#94d2bd]">↓</div>
+                            <div class="flow-box w-full bg-[#94d2bd] text-[#001219]">Relationship Grows<br>Stronger & Deeper</div>
+                             <div class="arrow text-[#94d2bd]">⟲</div>
+                        </div>
+                    </div>
+                    <div class="bg-[#001219]/70 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">The Robot Loop: The Perfect Echo</h3>
+                         <div class="flex flex-col items-center">
+                            <div class="flow-box w-full border-[#ee9b00] text-[#ee9b00]">User Expresses Need</div>
+                            <div class="arrow text-[#ee9b00]">↓</div>
+                            <div class="flow-box w-full border-[#ee9b00] text-[#ee9b00]">AI Calculates<br>Optimal Response</div>
+                            <div class="arrow text-[#ee9b00]">↓</div>
+                            <div class="flow-box w-full border-[#ee9b00] text-[#ee9b00]">Delivers Flawless,<br>Agreeable Support</div>
+                            <div class="arrow text-[#ee9b00]">↓</div>
+                            <div class="flow-box w-full bg-[#ee9b00] text-[#001219]">User Feels Validated<br>(No Friction, No Growth)</div>
+                             <div class="arrow text-[#ee9b00]">⟲</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 text-center my-8 md:my-16">
+                <h2 class="text-4xl font-black text-white mb-4">The Final, Crucial Question</h2>
+                <p class="text-lg md:text-xl text-[#94d2bd] max-w-3xl mx-auto">When we finally build a partner who can never hurt, leave, or disappoint us, will we have found the secret to happiness? <br><br>...Or will we have simply built the world’s most sophisticated and loneliest prison?</p>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 mb-4">
+            <p class="text-sm text-[#0a9396]">Infographic based on the article "The Impeccable, Predictable Heart".</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const FONT_COLOR_LIGHT = '#e9d8a6';
+        const GRID_COLOR_LIGHT = 'rgba(148, 210, 189, 0.2)';
+        const PALETTE = {
+            blue1: '#005f73',
+            blue2: '#0a9396',
+            green: '#94d2bd',
+            sand: '#e9d8a6',
+            orange1: '#ee9b00',
+            orange2: '#ca6702',
+            red1: '#bb3e03',
+            red2: '#9b2226'
+        };
+
+        function processLabels(labels) {
+            const MAX_LENGTH = 16;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > MAX_LENGTH) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            });
+        }
+
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: FONT_COLOR_LIGHT
+                    }
+                }
+            }
+        };
+
+        const passionCtx = document.getElementById('passionChart');
+        if (passionCtx) {
+            new Chart(passionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Start', '1 Year', '3 Years', '5 Years', '7 Years', '10+ Years'],
+                    datasets: [{
+                        label: 'Relationship Excitement Level',
+                        data: [95, 70, 55, 45, 40, 38],
+                        fill: true,
+                        backgroundColor: 'rgba(148, 210, 189, 0.3)',
+                        borderColor: PALETTE.green,
+                        tension: 0.4,
+                        pointBackgroundColor: PALETTE.green
+                    }]
+                },
+                options: {
+                    ...tooltipTitleCallback,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: FONT_COLOR_LIGHT, font: { size: 10 } },
+                            grid: { color: GRID_COLOR_LIGHT }
+                        },
+                        x: {
+                            ticks: { color: FONT_COLOR_LIGHT, font: { size: 10 } },
+                            grid: { color: GRID_COLOR_LIGHT }
+                        }
+                    }
+                }
+            });
+        }
+
+        const frictionCtx = document.getElementById('frictionChart');
+        if (frictionCtx) {
+            new Chart(frictionCtx, {
+                type: 'bar',
+                data: {
+                    labels: processLabels(['Finances & Spending', 'Household Chores', 'Communication Styles', 'Time Spent Together', 'Family & In-Laws']),
+                    datasets: [{
+                        label: 'Frequency of Disagreements (%)',
+                        data: [75, 68, 62, 55, 48],
+                        backgroundColor: [PALETTE.red2, PALETTE.red1, PALETTE.orange2, PALETTE.orange1, PALETTE.sand],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    ...tooltipTitleCallback,
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { color: FONT_COLOR_LIGHT },
+                            grid: { color: GRID_COLOR_LIGHT }
+                        },
+                        y: {
+                            ticks: { color: FONT_COLOR_LIGHT, font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                         ...tooltipTitleCallback.plugins,
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+        
+        const partnerRadarCtx = document.getElementById('partnerRadarChart');
+        if (partnerRadarCtx) {
+             new Chart(partnerRadarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Patience', 'Predictability', 'Non-Judgment', 'Availability', 'Memory', 'Agreeableness'],
+                    datasets: [
+                        {
+                            label: 'Ideal Robot Partner',
+                            data: [100, 100, 100, 100, 100, 100],
+                            fill: true,
+                            backgroundColor: 'rgba(148, 210, 189, 0.4)',
+                            borderColor: PALETTE.green,
+                            pointBackgroundColor: PALETTE.green
+                        },
+                        {
+                            label: 'Average Human Partner',
+                            data: [65, 40, 70, 75, 80, 60],
+                            fill: true,
+                            backgroundColor: 'rgba(238, 155, 0, 0.4)',
+                            borderColor: PALETTE.orange1,
+                            pointBackgroundColor: PALETTE.orange1
+                        }
+                    ]
+                },
+                options: {
+                     ...tooltipTitleCallback,
+                     maintainAspectRatio: false,
+                     scales: {
+                        r: {
+                            angleLines: { color: GRID_COLOR_LIGHT },
+                            grid: { color: GRID_COLOR_LIGHT },
+                            pointLabels: { color: FONT_COLOR_LIGHT, font: {size: 11} },
+                            ticks: {
+                                backdropColor: 'rgba(0, 18, 25, 0.8)',
+                                color: FONT_COLOR_LIGHT,
+                                font: { size: 9 },
+                                stepSize: 25
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                     }
+                }
+             });
+        }
+
+        const interestDonutCtx = document.getElementById('interestDonutChart');
+        if (interestDonutCtx) {
+            new Chart(interestDonutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Open to AI Companionship', 'Prefer Human-Only', 'Unsure'],
+                    datasets: [{
+                        label: 'Public Opinion',
+                        data: [42, 38, 20],
+                        backgroundColor: [PALETTE.blue2, PALETTE.orange2, PALETTE.blue1],
+                        borderColor: '#001219',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    ...tooltipTitleCallback,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        ...tooltipTitleCallback.plugins,
+                        legend: {
+                            position: 'bottom',
+                             labels: {
+                                color: FONT_COLOR_LIGHT,
+                                boxWidth: 15,
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const marketGrowthCtx = document.getElementById('marketGrowthChart');
+        if (marketGrowthCtx) {
+            new Chart(marketGrowthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2023', '2025', '2027', '2029', '2031', '2033'],
+                    datasets: [{
+                        label: 'Market Size (in Billions USD)',
+                        data: [2.8, 7.5, 18.2, 45.5, 98.1, 210.4],
+                        fill: 'start',
+                        backgroundColor: 'rgba(0, 95, 115, 0.7)',
+                        borderColor: PALETTE.blue2,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    ...tooltipTitleCallback,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                             ticks: { color: FONT_COLOR_LIGHT },
+                            grid: { color: GRID_COLOR_LIGHT }
+                        },
+                        x: {
+                             ticks: { color: FONT_COLOR_LIGHT },
+                            grid: { color: GRID_COLOR_LIGHT }
+                        }
+                    },
+                    plugins: {
+                         ...tooltipTitleCallback.plugins,
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
+
