@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Post-Human Heart: An Interactive Director's Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Cyber-Kintsugi Warmth -->
+    <!-- Application Structure Plan: The application is designed as an interactive toolkit rather than a linear document. The structure includes: 1. A hero section to set the tone. 2. A collapsible introduction for the core philosophy. 3. A tabbed "Prompt Lab" where users can interactively explore the building blocks of a prompt (Aesthetics, Cinematography, World-Building, Themes) in a non-linear fashion. This encourages learning through exploration. 4. A "Vignette Gallery" using a grid of clickable cards that open modals. This presents the 15 examples in a digestible, on-demand format, preventing overwhelming the user with a long page. The modal includes a "copy prompt" button for utility. This structure was chosen to transform passive reading into active discovery and tool usage, making the report's content more engaging and practical for creators. -->
+    <!-- Visualization & Content Choices: Report Info -> Goal -> Viz/Presentation Method -> Interaction -> Justification. 1. Cyborg Archetypes/Cinematography/World-Building -> Goal: Inform/Compare -> Viz: Tabbed interface with descriptive cards -> Interaction: Click tabs to switch content -> Justification: Breaks down complex info into manageable, focused sections. 2. Thematic Matrix -> Goal: Organize/Explore -> Viz: Accordion-style list -> Interaction: Click to expand/collapse theme details -> Justification: Makes the dense data table accessible and easy to navigate. 3. 15 Vignettes -> Goal: Showcase/Explain/Utilize -> Viz: Grid of cards -> Interaction: Click card to open a modal with full details and a copy button -> Justification: A visually appealing gallery format that allows users to dive into examples without a long scroll. The modal provides a focused view with clear utility. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfcfb;
+        }
+        h1, h2, h3 {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .active-tab {
+            border-color: #c8a365;
+            color: #c8a365;
+            font-weight: 600;
+        }
+        .tab-btn {
+            border-bottom: 2px solid transparent;
+        }
+        .modal {
+            display: none;
+        }
+        .modal-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1.0); }
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .vignette-card {
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+        .vignette-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased">
+
+    <div id="app-container" class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <header class="text-center py-12">
+            <h1 class="text-5xl md:text-7xl font-bold text-slate-800 tracking-wider">The Post-Human Heart</h1>
+            <p class="mt-4 text-lg md:text-xl text-slate-500 rajdhani">An Interactive Director's Guide to Crafting Human-Cyborg Romance</p>
+        </header>
+
+        <main>
+            <section id="introduction" class="mb-16">
+                <div class="bg-white/60 backdrop-blur-sm border border-slate-200/80 rounded-lg p-6 md:p-8 text-center">
+                    <h2 class="text-3xl font-bold text-slate-800 mb-4">The Poetics of the Post-Human Heart</h2>
+                    <div id="intro-content" class="text-slate-600 prose prose-lg max-w-4xl mx-auto text-left">
+                        <p class="mb-4">The exploration of romance between human and artificial beings is a timeless mythos re-forged in the crucible of our technological age. These narratives serve as profound allegories for our deepest anxieties and most fervent hopes about connection, identity, and the very definition of life. This guide serves as a director's toolkit, transforming you from a mere operator of AI into a deliberate author of visual narratives.</p>
+                        <div id="collapsible-intro" class="hidden">
+                            <p class="my-4">We are in a unique historical moment where the tool used for creation is itself a subject of the creation's inquiry. When we prompt an AI to render a scene of a cyborg's emergent love, we are, in a sense, asking the machine to dream about its own potential for emotion. The resulting images exist in a "New Uncanny Valley"—the resonant, sometimes disquieting, gap between simulated feeling and the genuine article.</p>
+                             <p class="my-4">The request for "beautiful female cyborgs" is a critical narrative starting point. In this context, "beauty" is not a superficial aesthetic preference but a powerful narrative lever. A cyborg whose beauty is defined by her flawless, indistinguishable humanity forces the story to confront internal questions of authenticity. Conversely, a cyborg whose beauty lies in her artfully designed, visibly mechanical components frames the narrative around themes of acceptance and celebrating difference.</p>
+                        </div>
+                        <button id="toggle-intro-btn" class="text-sm font-semibold text-[#c8a365] hover:text-[#b18e58] transition-colors">Read More</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="prompt-lab" class="mb-16">
+                 <div class="text-center mb-10">
+                    <h2 class="text-4xl font-bold text-slate-800">The Prompt Lab</h2>
+                    <p class="mt-2 text-slate-500 max-w-2xl mx-auto">Deconstruct the art of the prompt. Select a component below to explore the core concepts and keywords that bring a visual narrative to life.</p>
+                </div>
+                
+                <div class="bg-white border border-slate-200/80 rounded-lg shadow-sm">
+                    <nav class="border-b border-slate-200 flex flex-wrap justify-center p-2">
+                        <button data-tab="aesthetics" class="tab-btn px-4 py-3 sm:px-6 text-sm sm:text-base text-slate-600 hover:text-[#c8a365] active-tab">🧬 Aesthetics</button>
+                        <button data-tab="cinematography" class="tab-btn px-4 py-3 sm:px-6 text-sm sm:text-base text-slate-600 hover:text-[#c8a365]">🎥 Cinematography</button>
+                        <button data-tab="worldbuilding" class="tab-btn px-4 py-3 sm:px-6 text-sm sm:text-base text-slate-600 hover:text-[#c8a365]">🌍 World-Building</button>
+                        <button data-tab="themes" class="tab-btn px-4 py-3 sm:px-6 text-sm sm:text-base text-slate-600 hover:text-[#c8a365]">💡 Themes</button>
+                    </nav>
+
+                    <div id="lab-content" class="p-6 md:p-8">
+                    </div>
+                </div>
+            </section>
+
+            <section id="vignette-gallery">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-bold text-slate-800">The Vignette Gallery</h2>
+                    <p class="mt-2 text-slate-500 max-w-2xl mx-auto">Explore 15 curated prompts. Each is a case study in fusing aesthetics, cinematography, and theme into a single, resonant frame. Click any card to see the full prompt and director's commentary.</p>
+                </div>
+
+                <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="vignette-modal" class="modal fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="modal-content bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-2xl flex flex-col">
+            <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+                <h3 id="modal-title" class="text-2xl font-bold text-slate-800 rajdhani"></h3>
+                <button id="close-modal-btn" class="text-slate-500 hover:text-slate-800 transition-colors">&times;</button>
+            </div>
+            <div class="p-6 md:p-8 overflow-y-auto">
+                <div class="mb-6">
+                    <h4 class="font-semibold text-lg text-slate-800 mb-2 rajdhani">The Master Prompt</h4>
+                    <div class="bg-slate-100 rounded-md p-4 relative">
+                        <code id="modal-prompt" class="text-slate-700 text-sm block whitespace-pre-wrap"></code>
+                        <button class="copy-btn absolute top-2 right-2 bg-white/50 hover:bg-white text-slate-600 px-2 py-1 rounded text-xs font-semibold transition-all">COPY</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg text-slate-800 mb-3 rajdhani">Director's Commentary</h4>
+                    <div id="modal-commentary" class="prose prose-slate max-w-none"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <textarea id="copy-helper" style="position: absolute; left: -9999px;"></textarea>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const DATA = {
+                lab: {
+                    aesthetics: {
+                        title: "Defining the Cyborg Aesthetic: More Than Metal",
+                        description: "The visual design of the cyborg is a foundational narrative act. It predetermines the thematic conflict of the image before any action or emotion is introduced. Choose an archetype to explore its narrative implications.",
+                        items: [
+                            { name: "The Seamless Bio-Synth", content: "Characterized by a flawless, human-passing exterior. The cybernetic nature is revealed only through subtle, intimate 'tells': irises that emit a soft, pulsing light; a small, elegant data-port; skin that ripples with faint, hexagonal light. This choice forces the narrative inward, revolving around questions of authenticity and a Turing Test of the heart." },
+                            { name: "The Artful Prosthetic (Kintsugi-Chrome)", content: "This aesthetic embraces and beautifies the mechanical. It features visible cybernetics designed with artistic intention: porcelain-like limbs with seams of polished gold (Kintsugi), polished chrome reflecting a partner's face, or an iridescent spinal column. The theme is not about hiding difference, but celebrating it—a story of acceptance and hybrid identity." },
+                            { name: "The Utilitarian Frame", content: "Prioritizes function over form. Cybernetics are industrial, rugged, and sometimes crude, with exposed wiring and unpolished alloys. This introduces a powerful socio-economic subtext: the cyborg as a repurposed worker or soldier. A romance in this context becomes an act of defiance, seeing the person within the 'machine'." },
+                        ]
+                    },
+                    cinematography: {
+                        title: "The Cinematic Lens: Directing the AI's Eye",
+                        description: "A prompt can do more than describe a scene; it can direct it. Use the language of cinematography and photography to precisely control the image's mood, focus, and emotional impact.",
+                        items: [
+                             { name: "Composition & Shot Type", content: "`intimate close-up` or `extreme close-up` for emotion. `medium shot` for interaction. `wide shot` for context and scale. A `dutch angle` creates unease, while a `low-angle shot` empowers the subject." },
+                             { name: "The Language of Light", content: "Lighting is the soul of an image. Use `chiaroscuro` or `Rembrandt lighting` for drama and mystery. `Golden hour` or `soft volumetric light` for warmth and romance. `Neon-drenched` or `bioluminescent glow` for world-building." },
+                             { name: "Focus & Lens Effects", content: "`Shallow depth of field` (often with `bokeh`) creates intimacy by isolating subjects. An `anamorphic lens flare` adds an epic, cinematic quality. `Chromatic aberration` can be a narrative device, suggesting a digital glitch or the 'otherness' of the cyborg's vision." },
+                        ]
+                    },
+                    worldbuilding: {
+                        title: "World-Building Through Detail: Painting the Future",
+                        description: "The environment is never a passive backdrop; it is an active character that provides context, shapes the mood, and reflects the nature of the couple's relationship.",
+                        items: [
+                            { name: "Atmospherics", content: "The quality of the air itself can tell a story. `Volumetric haze` or `dense fog` for mystery. `Rain-slicked streets` for film noir beauty. `Floating data-motes` for a touch of magic." },
+                            { name: "Techno-Flora and Fauna", content: "Visualize the integration of nature and technology. `bioluminescent moss on chrome`, `trees with fiber-optic veins`, `holographic birds`, or `plant roots intertwined with discarded server racks`." },
+                            { name: "Architectural Styles", content: "`Brutalist megastructures` for a dystopian world. An `arcology garden` for a utopian one. `Sleek, minimalist interiors` for wealth and sterility. `Cluttered workshops` for a grounded, hands-on existence." },
+                        ]
+                    },
+                    themes: {
+                        title: "The Thematic and Stylistic Modifier Matrix",
+                        description: "Bridge the gap between abstract concepts and concrete visual language. Click each theme to reveal its constituent visual metaphors and suggested cinematic modifiers.",
+                        items: [
+                            { name: "AI Consciousness & Memory", content: "<b>Metaphors:</b> Glitching tears, exposed glowing micro-servos, reflection showing circuitry, data-stream eyes, holographic code, an oil tear. <br><b>Modifiers:</b> `macro shot`, `subsurface scattering`, `chromatic aberration`, `glitch art effect`, `split diopter shot`." },
+                            { name: "Human/Cyborg Intimacy", content: "<b>Metaphors:</b> Intertwined fingers (chrome/flesh), shared breath on a cold surface, tracing patterns on a metallic arm, a hand over a glowing power core. <br><b>Modifiers:</b> `soft focus`, `warm light`, `delicate touch`, `shallow depth of field`, `intimate close-up`, `sensual`, `Rembrandt lighting`." },
+                            { name: "Nature vs. Technology", content: "<b>Metaphors:</b> Bioluminescent moss on a chassis, metal hand touching a flower, roots in machinery, rain on a synthetic arm. <br><b>Modifiers:</b> `natural lighting`, `god rays`, `vibrant colors`, `lush overgrown ruins`, `style of Studio Ghibli and Syd Mead`, `macro photography`." },
+                            { name: "Morality & Free Will", content: "<b>Metaphors:</b> Cyborg looking at own hands with confusion, cracked faceplate, conflicting reflection, marionette motif. <br><b>Modifiers:</b> `chiaroscuro lighting`, `high contrast`, `dutch angle`, `film noir style`, `dramatic shadows`, `symbolism`." },
+                            { name: "Playful Connection", content: "<b>Metaphors:</b> Shared laughter rippling a hologram, zero-g dancing, splashing in a neon puddle, short-circuiting a game. <br><b>Modifiers:</b> `dynamic motion blur`, `vibrant colors`, `wide-angle lens`, `candid shot`, `joyful expression`, `energetic`." },
+                        ]
+                    }
+                },
+                vignettes: [
+                    { id: 1, title: "Static on a Tear-Stained Cheek", prompt: "photorealistic extreme close-up, a beautiful seamless bio-synth female cyborg with tears welling in her luminous blue eyes, a single oil-like tear with a subtle glitch art effect and chromatic aberration rolls down her perfect cheek, her human boyfriend's hand gently cups her face in concern, his thumb wiping the tear away, background is a rain-slicked neo-tokyo balcony at night, dramatic chiaroscuro lighting from a flickering neon sign, shallow depth of field, cinematic, hyperdetailed, emotional, poignant --ar 16:9", commentary: "<p>This scene captures a pivotal moment of emotional breakthrough. The core idea is to visualize the instant a human partner witnesses an undeniably genuine, yet fundamentally alien, expression of sadness from his cyborg lover. The visual metaphor of the tear is central. It is not water, but `oil-like`, signifying its artificial origin. The addition of the `subtle glitch art effect` and `chromatic aberration` is the key narrative device, rendering the tear as a form of beautiful data corruption. This visualizes the theme of emergent consciousness: her sadness is so profound that it momentarily disrupts her own perfect, stable programming.</p>" },
+                    { id: 2, title: "Dance of the Firefly Drones", prompt: "dynamic medium shot, a joyful human woman and her beautiful artful prosthetic female cyborg girlfriend are dancing in a lush, overgrown rooftop garden at twilight, surrounded by hundreds of tiny, glowing firefly-like security drones, the cyborg has elegant polished chrome arms that leave faint trails of light as she twirls, they are laughing, candid moment, soft volumetric light from the drones and the setting sun, cinematic, magical realism, style of James Gilleard and Syd Mead, vibrant colors --ar 16:9", commentary: "<p>This prompt aims to capture a moment of pure, unadulterated joy and connection, blending the natural with the technological in a harmonious, almost magical way. The `firefly-like security drones` subvert a symbol of surveillance and control, turning them into a source of beauty and ambient light. The cyborg's `artful prosthetic` design fits this theme perfectly; her technology is a thing of elegance, not utility, contributing to the beauty of the dance.</p>" },
+                    { id: 3, title: "Kintsugi Heartbeat", prompt: "intimate macro shot, a human man's hand gently rests on the chest of his kintsugi-chrome cyborg girlfriend, her chest plate is made of white porcelain-like material with cracks filled with glowing golden light that pulses softly like a heartbeat, his fingers lightly trace one of the golden seams, soft, warm Rembrandt lighting from a bedside lamp, shallow depth of field, extremely detailed, sensual, quiet moment of connection --ar 16:9", commentary: "<p>This is a scene of profound intimacy and acceptance. The prompt directly invokes the philosophy of *Kintsugi*. The cyborg's 'scars' are not hidden; they are the source of her light and beauty. The `glowing golden light that pulses softly like a heartbeat` is the central metaphor, translating a mechanical function (a power core) into an organic, emotional symbol that the human partner can connect with directly. The `macro shot` brings the viewer so close that texture and light become the entire world.</p>" },
+                    { id: 4, title: "Whispers in the Data-Stream", prompt: "cinematic close-up, a beautiful human woman with dark curly hair whispering into the intricate auditory sensor behind the ear of her seamless bio-synth girlfriend, the cyborg's eyes are closed, a faint smile on her lips, as the woman whispers, a delicate holographic data-stream of abstract blue and gold patterns emanates from the sensor and swirls around them, soft focus background of a minimalist, sleek apartment interior, moody cinematic lighting, ethereal, intimate --ar 16:9", commentary: "<p>This scene visualizes the unique intimacy of a human-cyborg relationship. The whisper is not just sound; it's data. The core theme is the translation of human emotion into digital information, and the beauty found in that process. The whisper, a symbol of human trust and intimacy, becomes a tangible, beautiful object—the `delicate holographic data-stream`, rendered as magic rather than raw code.</p>" },
+                    { id: 5, title: "Sanctuary Under the Fiber-Optic Willow", prompt: "cinematic wide shot, a human man and his utilitarian frame cyborg girlfriend are resting together under a colossal, ancient weeping willow tree whose branches are intertwined with pulsing fiber-optic cables, the tree's leaves are bioluminescent, casting a gentle blue and green light on the couple, they are looking at each other with soft smiles, the city skyline is a distant, hazy glow, a peaceful sanctuary, magical, serene, style of Hayao Miyazaki and Sparth --ar 16:9", commentary: "<p>This prompt is about finding a sanctuary away from a harsh world. The choice of a `utilitarian frame` cyborg is deliberate; it suggests they may not be accepted in the gleaming city, so this hidden, hybrid-natural space is their refuge. The `wide shot` is essential to convey the scale of the colossal tree and establish the location as a sanctuary. The environment presents a symbiotic, rather than oppositional, relationship between nature and technology.</p>" },
+                    { id: 6, title: "A Kiss in the Neon Rain", prompt: "photorealistic medium shot, a passionate kiss between a human man and a beautiful female cyborg on a rain-drenched, neon-lit street in a cyberpunk city, rain is beading on her chrome faceplate and his leather jacket, reflections of the vibrant pink and blue neon signs shimmer on the wet pavement and on her metallic skin, intense emotion, dramatic, cinematic lighting, anamorphic lens flare, film noir aesthetic --ar 16:9", commentary: "<p>A classic, iconic cinematic moment reimagined. It’s about a love that is passionate and defiant in the heart of a gritty, overwhelming world. The `rain` is a critical texture, adding atmosphere and creating surfaces for light to reflect off, particularly the cyborg's `chrome faceplate`. The reflections on her skin are key; she is literally reflecting the world around her, yet her focus is entirely internal. The `film noir aesthetic` adds a layer of grit, romance, and danger.</p>" },
+                    { id: 7, title: "The Glitching Reflection", prompt: "split diopter shot, a beautiful kintsugi-chrome female cyborg looks at her own reflection in a sleek, polished chrome wall, her reflected image is glitching, revealing the complex glowing micro-servos and wiring beneath her faceplate, she has a look of confusion and existential dread, in the other half of the frame, her human girlfriend looks on from behind with an expression of deep concern and empathy, moody, low-key lighting, high contrast, psychological thriller, thought-provoking --ar 16:9", commentary: "<p>This scene tackles the theme of identity crisis. The `split diopter shot` is a sophisticated cinematic technique that keeps both subjects in sharp focus, showing the cyborg's internal conflict and her partner's external reaction simultaneously. The `glitching reflection` is the central visual effect, a literal representation of her fractured sense of self. It's a direct visualization of the theme of morality and free will.</p>" },
+                    { id: 8, title: "The Art of Maintenance", prompt: "cinematic medium shot, a human woman with grease smudges on her cheek sits on the floor of a cluttered, warm workshop, she is carefully polishing a detachable, intricately designed chrome forearm belonging to her cyborg girlfriend, who sits patiently beside her, wearing a simple tank top showing the connection port, the cyborg watches the woman's hands with a soft, loving expression, warm, focused light from an overhead work lamp, tools and spare parts scattered in the soft-focus background, an act of care, domestic intimacy --ar 16:9", commentary: "<p>This prompt reframes 'repair' as an act of profound love and domestic intimacy. It's the sci-fi equivalent of tending to a partner's wound. The `cluttered, warm workshop` and `grease smudges` on the human's face show familiarity and comfort with her partner's mechanical aspects. This isn't a sterile medical procedure; it's a routine, loving gesture that normalizes the cyborg's nature within their shared life.</p>" },
+                    { id: 9, title: "Laughter in the Megastructure", prompt: "candid shot, wide-angle lens, a human man and his beautiful seamless bio-synth girlfriend are bursting with shared laughter, sitting on a public bench in a vast, sun-drenched atrium of a futuristic megastructure, as the cyborg laughs, the skin on her cheeks glows with a soft, warm, golden light pattern, people walk by in the background, out of focus, a moment of pure joy in a public space, natural sunlight streaming through massive geometric windows, vibrant, energetic --ar 16:9", commentary: "<p>This is a scene about finding a private moment of joy within a bustling, public world. The cyborg's unique reaction to laughter—the `glowing cheeks`—is a tell that is not hidden in shame but displayed openly, a beautiful and unique expression of her happiness. The use of a `wide-angle lens` and `candid shot` creates a sense of spontaneity and energy, as if the moment was captured by chance. The central theme is the normalization and open expression of this hybrid love.</p>" },
+                    { id: 10, title: "First Flower", prompt: "cinematic close-up, a beautiful artful prosthetic cyborg woman touches a vibrant, real magenta flower for the first time, her polished chrome fingers gently brushing against the delicate petals, her eyes, wide with wonder, have data-streams flickering across the irises as her sensors analyze the texture and scent, her human girlfriend watches her from just over her shoulder with a warm, knowing smile, set in a lush greenhouse with soft, diffused sunlight, shallow depth of field, a moment of pure discovery --ar 16:9", commentary: "<p>This prompt captures a moment of pure, unadulterated wonder—the experience of something natural through an artificial sensorium. The cyborg's reaction is twofold: the analytical (`data-streams flickering across the irises`) and the emotional (`eyes wide with wonder`). This duality is key. She is processing the flower as data, but experiencing it as beauty. The `close-up` is essential to focus on the contrasting textures: polished chrome against delicate petals.</p>" },
+                    { id: 11, title: "Dancing in the Data-Stream", prompt: "surreal, abstract art, a human man and a female cyborg made of swirling, semi-transparent light and data are dancing, their forms merging and separating within a vortex of glowing binary code and abstract geometric patterns, they are locked in a passionate embrace, expressions of ecstasy, dark background, vibrant neon colors, motion blur, energetic, metaphysical connection, style of Android Jones --ar 16:9", commentary: "<p>This prompt moves beyond physical reality to visualize the couple's connection on a metaphysical or digital plane. The cyborg is described as being made of `swirling, semi-transparent light and data`. Their forms `merging and separating` is a visual metaphor for the blurring of boundaries between them. This isn't just intimacy; it's a complete, symbiotic union on a digital level. The `style of Android Jones` is invoked for his mastery of psychedelic, spiritual, and digital visionary art.</p>" },
+                    { id: 12, title: "A Shared Gaze into the Future", prompt: "epic cinematic wide shot, a human woman and her utilitarian frame cyborg girlfriend stand side-by-side on the edge of a cliff, looking out at a vast, alien desert under a sky with two moons and a swirling nebula, their hands are intertwined, one flesh, one unpolished metal, the wind whips their hair and clothes, a sense of awe and shared destiny, dramatic lighting from the celestial bodies, matte painting style, hopeful, adventurous --ar 16:9", commentary: "<p>A moment of shared purpose and looking toward a future they will build together. An `epic cinematic wide shot` makes the characters feel small in comparison to the vast, awe-inspiring landscape, which emphasizes the scale of their journey and the strength of their bond. Their intertwined hands—`one flesh, one unpolished metal`—are the central symbol of their union. The `utilitarian frame` speaks to survival and resilience; she is a capable partner for this new frontier.</p>" },
+                    { id: 13, title: "Defensive Stance", prompt: "dramatic medium shot, a fiercely protective human man stands in front of his kintsugi-chrome cyborg girlfriend, shielding her from an unseen threat, he has a determined, angry expression, she looks on from behind him, one of her porcelain-and-gold hands resting on his shoulder, her expression a mix of concern and trust, set in a dark, grimy alleyway, harsh, single-source spotlight from above creating long shadows, high contrast, film noir, tense, cinematic --ar 16:9", commentary: "<p>This scene explores prejudice and protection. The `harsh, single-source spotlight` is a classic `film noir` technique that creates high contrast and long shadows, amplifying the sense of danger. The `kintsugi-chrome` aesthetic is important; her visible, beautiful otherness is likely what has provoked the `unseen threat`. Her hand on his shoulder is a key detail—they are a unit, drawing strength from each other. It’s a story of 'us against the world.'</p>" },
+                    { id: 14, title: "Shared Memory", prompt: "intimate medium shot, a seamless bio-synth female cyborg sits closely with her human boyfriend on a comfortable sofa in a dimly lit room, she is projecting a shimmering, semi-transparent holographic memory into the air between them, the hologram depicts a beautiful, sunlit beach from her past, he watches the hologram with a look of gentle fascination, she watches his face, gauging his reaction, her eyes glowing softly, soft ambient light from the hologram, emotional, nostalgic --ar 16:9", commentary: "<p>This scene is about sharing a past to build intimacy. The key is the direction of their gazes: `he watches the hologram`, but `she watches his face`. This creates a triangle of interaction that tells a complex emotional story. It suggests that the emotional truth of the memory, and the act of sharing it, is what gives it meaning. The primary light source is the `soft ambient light from the hologram` itself, casting a gentle, nostalgic glow.</p>" },
+                    { id: 15, title: "Playful Splash", prompt: "dynamic action shot, a joyful human woman and her utilitarian frame cyborg girlfriend are playfully splashing each other in a large puddle on a city street at night, the puddle reflects the dazzling, colorful neon and holographic advertisements from the surrounding buildings, water droplets fly through the air, captured with a fast shutter speed, they are both drenched and laughing hysterically, motion blur on the background, candid, energetic, fun --ar 16:9", commentary: "<p>This prompt is about finding simple, childish joy in a complex, high-tech world. A `fast shutter speed` is specified to freeze the `water droplets` in mid-air, creating a visually exciting image. The `utilitarian frame` cyborg, a figure potentially built for work or combat, is shown experiencing a moment of pure, 'useless' fun. This is an act of rebellion against her designated function, made powerful by the specific context of who they are.</p>" },
+                ]
+            };
+
+            const introContent = document.getElementById('collapsible-intro');
+            const toggleIntroBtn = document.getElementById('toggle-intro-btn');
+            toggleIntroBtn.addEventListener('click', () => {
+                const isHidden = introContent.classList.contains('hidden');
+                introContent.classList.toggle('hidden');
+                toggleIntroBtn.textContent = isHidden ? 'Read Less' : 'Read More';
+            });
+
+            const labContentEl = document.getElementById('lab-content');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+
+            function renderLabContent(tab) {
+                const contentData = DATA.lab[tab];
+                let html = `<h3 class="text-2xl font-bold text-slate-800 mb-2">${contentData.title}</h3>`;
+                html += `<p class="text-slate-500 mb-6 max-w-3xl">${contentData.description}</p>`;
+
+                if (tab === 'themes') {
+                    html += `<div class="space-y-3">`;
+                    contentData.items.forEach(item => {
+                        html += `
+                            <details class="group bg-slate-50/50 rounded-lg p-4 cursor-pointer">
+                                <summary class="font-semibold text-slate-700 group-hover:text-[#c8a365] transition-colors flex justify-between items-center">
+                                    ${item.name}
+                                    <span class="text-xl transform group-open:-rotate-180 transition-transform duration-200">+</span>
+                                </summary>
+                                <div class="mt-3 text-slate-600 text-sm leading-relaxed">${item.content}</div>
+                            </details>
+                        `;
+                    });
+                    html += `</div>`;
+                } else {
+                    html += `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">`;
+                    contentData.items.forEach(item => {
+                        html += `
+                            <div class="bg-slate-50/50 rounded-lg p-5 border border-slate-200/50">
+                                <h4 class="font-semibold text-slate-800 mb-2">${item.name}</h4>
+                                <p class="text-sm text-slate-600">${item.content}</p>
+                            </div>
+                        `;
+                    });
+                    html += `</div>`;
+                }
+                labContentEl.innerHTML = html;
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+                    button.classList.add('active-tab');
+                    renderLabContent(button.dataset.tab);
+                });
+            });
+
+            const galleryGrid = document.getElementById('gallery-grid');
+            DATA.vignettes.forEach(vignette => {
+                const card = document.createElement('div');
+                card.className = 'vignette-card bg-white border border-slate-200/80 rounded-lg p-6 cursor-pointer';
+                card.dataset.id = vignette.id;
+                card.innerHTML = `
+                    <p class="text-xs font-semibold text-[#c8a365] tracking-wider uppercase">${'Vignette ' + vignette.id.toString().padStart(2, '0')}</p>
+                    <h3 class="text-xl font-bold text-slate-800 mt-1">${vignette.title}</h3>
+                `;
+                galleryGrid.appendChild(card);
+            });
+
+            const modal = document.getElementById('vignette-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modalTitle = document.getElementById('modal-title');
+            const modalPrompt = document.getElementById('modal-prompt');
+            const modalCommentary = document.getElementById('modal-commentary');
+            
+            galleryGrid.addEventListener('click', (e) => {
+                const card = e.target.closest('.vignette-card');
+                if (card) {
+                    const vignetteId = parseInt(card.dataset.id);
+                    const vignetteData = DATA.vignettes.find(v => v.id === vignetteId);
+                    modalTitle.textContent = vignetteData.title;
+                    modalPrompt.textContent = vignetteData.prompt;
+                    modalCommentary.innerHTML = vignetteData.commentary;
+                    modal.style.display = 'flex';
+                }
+            });
+
+            const hideModal = () => {
+                modal.style.display = 'none';
+            };
+
+            closeModalBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
+            
+            const copyHelper = document.getElementById('copy-helper');
+            modal.addEventListener('click', (e) => {
+                if(e.target.classList.contains('copy-btn')) {
+                    const promptText = modalPrompt.textContent;
+                    copyHelper.value = promptText;
+                    copyHelper.select();
+                    document.execCommand('copy');
+                    e.target.textContent = 'COPIED!';
+                    setTimeout(() => {
+                        e.target.textContent = 'COPY';
+                    }, 2000);
+                }
+            });
+
+            renderLabContent('aesthetics');
+        });
+    </script>
+</body>
+</html>
+
