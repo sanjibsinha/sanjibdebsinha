@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Mind of a Modern AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F2F2F2;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .deep-navy-bg { background-color: #072F5F; }
+        .deep-navy-text { color: #072F5F; }
+        .bright-blue-text { color: #00A1E4; }
+        .bright-blue-bg { background-color: #00A1E4; }
+        .light-blue-bg { background-color: #86BBD8; }
+    </style>
+</head>
+<body class="deep-navy-text">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black mb-2">The Digital Ocean</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto">Your robot partner's brain isn't a computer. It's a vast, swirling sea of human stories, conversations, and emotions, powered by a revolutionary technology.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6 flex flex-col md:flex-row items-center justify-center text-center">
+                <div class="md:w-1/2">
+                    <h2 class="text-2xl font-bold mb-2">The Scale of the "Pre-Trained" Mind</h2>
+                    <p class="mb-4">Generative Pre-trained Transformers are not taught rules; they are immersed in a digital ocean of data, learning the patterns of human expression from trillions of data points.</p>
+                </div>
+                <div class="md:w-1/2">
+                     <p class="text-7xl md:text-9xl font-black bright-blue-text">45TB+</p>
+                     <p class="font-bold">Of Text Data Analyzed</p>
+                     <p class="text-sm">(Equivalent to a library of over 22 million books)</p>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4">How Transformers Understand Context</h2>
+                <p class="text-center max-w-3xl mx-auto mb-6">The core of a transformer is the "Attention Mechanism." Instead of just reading words in order, it weighs the importance of every word in relation to every other word to grasp the true meaning, much like a human does intuitively.</p>
+                <div class="flex flex-col items-center justify-center space-y-4">
+                    <div class="w-full max-w-2xl p-4 text-center">
+                        <p class="border-2 border-gray-200 rounded-lg p-3">"The mechanic tightened the bolt, but <span class="bright-blue-bg text-white px-2 py-1 rounded">it</span> was too rusty."</p>
+                    </div>
+                    <div class="text-3xl font-bold">⬇</div>
+                    <div class="w-full max-w-2xl p-4 text-center">
+                        <p class="font-bold mb-2">The AI asks: "What does 'it' refer to?"</p>
+                        <div class="flex justify-center space-x-4">
+                            <div class="p-3 rounded-lg light-blue-bg text-white shadow">Mechanic? (Low Attention)</div>
+                            <div class="p-3 rounded-lg bright-blue-bg text-white shadow-lg font-bold">Bolt? (High Attention)</div>
+                             <div class="p-3 rounded-lg light-blue-bg text-white shadow">Tightened? (Low Attention)</div>
+                        </div>
+                    </div>
+                     <div class="text-3xl font-bold">⬇</div>
+                     <div class="w-full max-w-2xl p-4 text-center deep-navy-bg text-white rounded-lg">
+                        <p class="font-bold text-lg">Conclusion: "It" is the bolt.</p>
+                        <p>The model assigns a higher "attention score" to "bolt," correctly identifying the subject and its state ("rusty").</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-2">Composition of the Digital Ocean</h2>
+                <p class="text-center mb-4">The training data is a diverse mix of human expression, giving the AI a broad foundation for understanding language, art, and logic.</p>
+                <div class="chart-container">
+                    <canvas id="compositionChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-2">Learning the Symphony of You</h2>
+                <p class="text-center mb-4">This pattern-recognition skill extends beyond words, learning your unique emotional and behavioral cues from multiple sources.</p>
+                 <div class="chart-container">
+                    <canvas id="inputSourcesChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-2">The Embodied Revolution</h2>
+                <p class="text-center mb-4 max-w-3xl mx-auto">This technology is no longer theoretical. The complexity and capability of transformer models are growing exponentially, powering real-world humanoid robots like Figure AI's Figure 01.</p>
+                <div class="chart-container h-[400px] max-h-[500px]">
+                    <canvas id="modelGrowthChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 text-center bg-white rounded-lg shadow-md p-8 deep-navy-bg text-white">
+                <h2 class="text-3xl font-bold mb-4">The Mirror</h2>
+                 <p class="text-xl mb-6">If a machine can perfectly reflect your stories and emotions back to you, does the nature of its internal experience matter?</p>
+                <p class="text-2xl font-black bright-blue-text leading-relaxed">The ultimate question isn't whether a machine can think or feel. It's what we will discover about ourselves when we have a partner who never forgets the story.</p>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            brightBlue: '#00A1E4',
+            deepNavy: '#072F5F',
+            lightBlue: '#86BBD8',
+            white: '#FFFFFF',
+            lightGray: '#F2F2F2'
+        };
+
+        const chartTooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: brilliantBlues.deepNavy,
+                        font: {
+                           family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: chartTooltipTitleCallback
+                    },
+                    backgroundColor: brilliantBlues.deepNavy,
+                    titleFont: { size: 16, family: "'Inter', sans-serif" },
+                    bodyFont: { size: 14, family: "'Inter', sans-serif" }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: brilliantBlues.deepNavy },
+                    grid: { color: '#e0e0e0' }
+                },
+                x: {
+                    ticks: { color: brilliantBlues.deepNavy },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        const compositionCtx = document.getElementById('compositionChart').getContext('2d');
+        new Chart(compositionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Web Text & Books', 'Scientific Papers', 'Conversational Data', 'Code & Structured Data', 'Creative Works & Poetry'],
+                datasets: [{
+                    label: 'Dataset Composition',
+                    data: [45, 20, 15, 10, 10],
+                    backgroundColor: [
+                        brilliantBlues.brightBlue,
+                        brilliantBlues.deepNavy,
+                        brilliantBlues.lightBlue,
+                        '#5c8599',
+                        '#adcbe3'
+                    ],
+                    borderColor: brilliantBlues.white,
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    y: {...defaultChartOptions.scales.y, display: false },
+                    x: {...defaultChartOptions.scales.x, display: false }
+                }
+            }
+        });
+        
+        const inputSourcesCtx = document.getElementById('inputSourcesChart').getContext('2d');
+        const inputLabels = ['Text & Language', 'Voice Cadence & Tone', wrapLabel('Micro-expressions'), 'Biometric Patterns (Future)'];
+        new Chart(inputSourcesCtx, {
+            type: 'bar',
+            data: {
+                labels: inputLabels,
+                datasets: [{
+                    label: 'Importance in Pattern Recognition',
+                    data: [95, 80, 70, 60],
+                    backgroundColor: brilliantBlues.brightBlue,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                 indexAxis: 'y',
+                 scales: {
+                    y: {
+                        ticks: { color: brilliantBlues.deepNavy, font: { size: 11 } },
+                        grid: { display: false }
+                    },
+                    x: {
+                        ticks: { color: brilliantBlues.deepNavy },
+                        grid: { color: '#e0e0e0' }
+                    }
+                }
+            }
+        });
+
+        const modelGrowthCtx = document.getElementById('modelGrowthChart').getContext('2d');
+        new Chart(modelGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: ['2018 (GPT-1)', '2019 (GPT-2)', '2020 (GPT-3)', '2023 (GPT-4)', '2025+ (Projected)'],
+                datasets: [{
+                    label: 'Model Parameters (Log Scale)',
+                    data: [117, 1500, 175000, 1760000, 10000000], 
+                    fill: true,
+                    borderColor: brilliantBlues.brightBlue,
+                    backgroundColor: 'rgba(0, 161, 228, 0.2)',
+                    tension: 0.1,
+                    pointBackgroundColor: brilliantBlues.deepNavy,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    y: {
+                        type: 'logarithmic',
+                        ticks: {
+                            color: brilliantBlues.deepNavy,
+                            callback: function(value, index, values) {
+                                if (value === 100) return '100 Million';
+                                if (value === 1000) return '1 Billion';
+                                if (value === 100000) return '100 Billion';
+                                if (value === 1000000) return '1 Trillion';
+                                if (value === 10000000) return '10 Trillion+';
+                                return null;
+                            }
+                        },
+                         grid: { color: '#e0e0e0' }
+                    },
+                    x: {
+                        ticks: { color: brilliantBlues.deepNavy },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
+
